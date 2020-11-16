@@ -1,25 +1,3 @@
-<<<<<<< HEAD
-<div [ngSwitch]="recipeVisible" class="menuBodySpan">
-    <div class="col-9 menuBody" *ngSwitchCase="false">
-        <div class="recipeIcon">
-            <span class="recipeThumb">
-                <img src="assets/images/cookies.jpg" class="thumb">
-            </span>
-            <span class="recipeIconActions">
-                <div class="addToList">
-                    <a href="#"><i class="far fa-plus-square"></i></a>
-                </div>
-                <div class="recipeExpand">
-                    <a (click)="recipeVisible=true"><i class="fas fa-expand-arrows-alt"></i></a>
-                </div>
-                <div class="aboutExpand">
-                    <a (click)="aboutVisible=true"><i class="fas fa-times"></i></a>
-                </div>
-            </span>
-        </div>
-    </div>
-    <app-full-recipe *ngSwitchCase="true" class="col-9 fullRecipeModule"></app-full-recipe>
-=======
 <div class="menuBodySpan">
     <div class="col-12 menuBody row">
         <div class="recipeIcon" *ngFor="let recipe of recipes">
@@ -42,5 +20,4 @@
             </div>
         </div>
     </div>
->>>>>>> 5227baf729ca0da4c21e3cfbb230e73153686cfa
 </div>

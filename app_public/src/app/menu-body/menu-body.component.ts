@@ -12,10 +12,6 @@ import { Chef, Recipe, Item } from '../chef'; //commented out ingredients from r
 
 export class MenuBodyComponent implements OnInit {
 
-<<<<<<< HEAD
-  public recipeVisible: boolean = false;
-  public aboutVisible: boolean = false;
-=======
   @Input() routerLink: string | any[];
   
   constructor(
@@ -30,7 +26,6 @@ export class MenuBodyComponent implements OnInit {
 
 
   public message: string;
->>>>>>> 5227baf729ca0da4c21e3cfbb230e73153686cfa
   
   public getRecipes(): void {
     this.message = 'Searching for things to eat';

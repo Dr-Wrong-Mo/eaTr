@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-=======
 import { NgModule } from '@angular/core';
 import { EatrDataService } from '../eatr-data.service';
 
@@ -9,7 +7,6 @@ export class Chef {
   chef: string;
   recipes: any[];
 }
->>>>>>> 5227baf729ca0da4c21e3cfbb230e73153686cfa
 
 @Component({
   selector: 'app-framework',
@@ -33,21 +30,10 @@ export class FrameworkComponent {
   public chef: Chef[];
   public message: string;
 
-<<<<<<< HEAD
-  popUpOpen = false;
-
-  openPopUp() {
-    this.popUpOpen = true;
-  }
-
-  cancelOption() {
-    this.popUpOpen = false;
-=======
   constructor(private eatrDataService: EatrDataService) { }
 
   ngOnInit(): void {
     
->>>>>>> 5227baf729ca0da4c21e3cfbb230e73153686cfa
   }
 
 }

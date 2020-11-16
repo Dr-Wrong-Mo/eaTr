@@ -1,28 +1,13 @@
-<<<<<<< HEAD
-import { Component, OnInit } from '@angular/core';
-=======
 import { Component, OnInit, Input } from '@angular/core';
 import { EatrDataService } from '../eatr-data.service';
 import { FrameworkComponent } from '../framework/framework.component';
 import { Item, Chef } from '../chef';
->>>>>>> 5227baf729ca0da4c21e3cfbb230e73153686cfa
 
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
   styleUrls: ['./shopping-list.component.css']
 })
-<<<<<<< HEAD
-export class ShoppingListComponent implements OnInit {
-  title:string='Shopping List';
-  shoppingListItems:any[] = [];
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}
-=======
 
 export class ShoppingListComponent implements OnInit {
 
@@ -84,4 +69,3 @@ export class ShoppingListComponent implements OnInit {
       this.getItems();
     }
 }
->>>>>>> 5227baf729ca0da4c21e3cfbb230e73153686cfa

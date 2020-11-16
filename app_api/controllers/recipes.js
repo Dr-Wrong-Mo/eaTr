@@ -209,7 +209,7 @@ const recipesUpdateOne = (req, res) => {
         });
     }
   );
-};*/
+};
 
 //Delete
 const recipesDeleteOne = (req, res) => {

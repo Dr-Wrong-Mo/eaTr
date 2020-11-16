@@ -7,36 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">  
 </head>
 <body>
-<<<<<<< HEAD
-  <div class="titleBar">
-      <span class="titleName">
-          <a href="#" class="brand">eaTr</a>
-      </span>
-      <span class="navIcons">
-        <button class="fas fa-info-circle" [disabled]="popUpOpen" (click)="openPopUp()"></button>&nbsp;<a href="#"><i class="fas fa-tasks"></i></a>
-        <app-popup class="my-prompt" [isOpen]="popUpOpen">
-          <div class="box">
-            <header>
-              <span class="title">About</span>
-            </header>
-            <main>
-              eaTr makes meal planning easier by helping you build your shopping list. Just pick the recipes you want to make, and eaTr will automatically put together your shopping list for you!
-            </main>
-            <footer>
-              <button (click)="cancelOption()">&lt;&nbsp;Close&nbsp;&gt;</button>
-            </footer>
-          </div>
-        </app-popup>
-      </span>
-  </div>
-  <hr class="topRowLine">
-    <div class="row">
-        <app-menu-body class="col-9 menuBodyModule"></app-menu-body>
-        <app-sidebar class="col-3 sidebar"></app-sidebar>
-    </div>
-=======
   <app-page-header></app-page-header>
   <router-outlet></router-outlet>
->>>>>>> 5227baf729ca0da4c21e3cfbb230e73153686cfa
 </body>
 </html>

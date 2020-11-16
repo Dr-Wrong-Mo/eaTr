@@ -9,16 +9,9 @@ import { FullRecipeComponent } from './full-recipe/full-recipe.component';
 import { MenuBodyComponent } from './menu-body/menu-body.component';
 import { TitleBarComponent } from './title-bar/title-bar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-<<<<<<< HEAD
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { HtmlLineBreaksPipe } from './html-line-breaks.pipe';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PopupComponent } from './popup/popup.component';
-=======
 import { NewRecipeComponent } from './new-recipe/new-recipe.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
->>>>>>> 5227baf729ca0da4c21e3cfbb230e73153686cfa
 
 @NgModule({
   declarations: [
@@ -27,15 +20,6 @@ import { PageHeaderComponent } from './page-header/page-header.component';
     MenuBodyComponent,
     TitleBarComponent,
     SidebarComponent,
-<<<<<<< HEAD
-    ShoppingListComponent,
-    HtmlLineBreaksPipe,
-    PopupComponent,
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-=======
     NewRecipeComponent,
     ShoppingListComponent,
     PageHeaderComponent,
@@ -67,7 +51,6 @@ import { PageHeaderComponent } from './page-header/page-header.component';
         component: FullRecipeComponent
       }
     ])
->>>>>>> 5227baf729ca0da4c21e3cfbb230e73153686cfa
   ],
   providers: [],
   bootstrap: [FrameworkComponent]

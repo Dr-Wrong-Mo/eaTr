@@ -41,11 +41,11 @@ router
 
     // shopping list items
 router
-    .route('/chef/:chefid/shoppingList/5eb7bb14689a7813d445ac2f/item')
+    .route('/chef/:chefid/shoppingList/5fb1d281928416b4bb06547d/item')
     .post(ctrlShoppingList.shoppingListAddFullRecipe);
 
 router
-    .route('/chef/:chefid/shoppingList/5eb7bb14689a7813d445ac2f/item/:itemid')
+    .route('/chef/:chefid/shoppingList/5fb1d281928416b4bb06547d/item/:itemid')
     .get(ctrlShoppingList.shoppingListReadOne)
     .put(ctrlShoppingList.shoppingListUpdateOne)
     .delete(ctrlShoppingList.shoppingListDeleteOne);
