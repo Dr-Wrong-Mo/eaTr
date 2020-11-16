@@ -22,7 +22,31 @@ const chefCreate = (req, res) => {
 
 //Read
 
-const chefReadOne = (req, res) => {  
+const chefGetAll = (req, res) => {
+  console.log('fetching API method chefGetAll');
+    Chf.find({})
+    .exec((err, chef) => {
+      if (!chef) {
+        return res
+          .status(404)
+          .json({
+            "message": "Chef not found"
+          });
+      } else if (err) {
+        return res
+          .status(404)
+          .json(err);
+      } else {
+          console.log('chef test', chef)
+        return res
+          .status(200)
+          .json(chef);
+      }
+    });
+};
+
+const chefReadOne = (req, res) => {
+  console.log('fetching API method chefReadOne');
     Chf
       .findById(req.params.chefid)
       .exec((err, chef) => {
@@ -37,6 +61,7 @@ const chefReadOne = (req, res) => {
             .status(404)
             .json(err);
         } else {
+          console.log('API Method chefReadOne: fetching chef', chef);
           return res
             .status(200)
             .json(chef);
@@ -113,6 +138,7 @@ const chefDeleteOne = (req, res) => {
 
 module.exports = {
     chefCreate,
+    chefGetAll,
     chefReadOne,
     chefUpdateOne,
     chefDeleteOne

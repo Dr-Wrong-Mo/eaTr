@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 
 //Recipe Schemas
-const ingredientsSchema = new mongoose.Schema({
+
+//removing ingredientsSchema until recipe.ingredients is an array of objects.
+
+/* const ingredientsSchema = new mongoose.Schema({
     ingredient: {
         type: String,
         required: false
@@ -14,17 +17,21 @@ const ingredientsSchema = new mongoose.Schema({
         type: String,
         required: false
     }
- });
+ }); */
+
 
  const recipeSchema = new mongoose.Schema({
     recipeName: {
         type: String,
         required: true
     },
-    ingredients: [ingredientsSchema],
-    instructions: {
+    ingredients: {
         type: String,
         required: true
+    },
+    instructions: {
+        type: String,
+        required: false
     },
     image: ({
         img: { data: Buffer, contentType: String }
@@ -35,7 +42,7 @@ const ingredientsSchema = new mongoose.Schema({
 const itemSchema = new mongoose.Schema({
     listItem: {
         type: String,
-        required: false
+        required: true
     },
     listQuantity: {
         type: Number,
@@ -54,8 +61,9 @@ const itemSchema = new mongoose.Schema({
 const shoppingListNameSchema = new mongoose.Schema({
     listName: {
         type: String,
-        required: true
-    }
+        required: false
+    },
+    item: [itemSchema]
 });
 
 //Chef Schema
@@ -64,11 +72,12 @@ const chefSchema = new mongoose.Schema({
     type: String,
     required: true
     },
-    recipes: [recipeSchema],
-    shoppingList: [shoppingListNameSchema]
+    recipe: [recipeSchema],
+    //shoppingList: [shoppingListNameSchema]
+    item: [itemSchema] //put this here until multiple shopping lists are enabled.
 });
 
-mongoose.model('ingredients', ingredientsSchema);
+//mongoose.model('ingredients', ingredientsSchema);
 mongoose.model('recipe', recipeSchema);
 mongoose.model('shoppingList', shoppingListNameSchema);
 mongoose.model('item', itemSchema);

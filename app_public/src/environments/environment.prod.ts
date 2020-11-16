@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  apiBaseUrl: 'https://warm-mountain-65868.herokuapp.com/',
+  production: false
 };
