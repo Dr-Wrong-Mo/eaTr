@@ -33,7 +33,7 @@ export class ShoppingListComponent implements OnInit {
   public onItemSubmit(): void {
     this.formError = '';
     if (this.formIsValid()) {
-      this.eatrDataService.addItemByChefId('5ec30d3a93f206389c58748c', this.newItem)
+      this.eatrDataService.addItemByChefId('5fbad08d54734cb04d7ff5bc', this.newItem)
         .then((item: Item) => {
           console.log('Item saved', item);
           let recipes = this.chef.recipes.slice(0);

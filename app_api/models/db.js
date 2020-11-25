@@ -1,10 +1,16 @@
 const mongoose = require('mongoose');
-const host = process.env.DB_HOST || '127.0.0.1'
-const dbURL = `mongodb://${host}/eaTr`;
 const readLine = require('readline');
 
-var connect = () => {
-  setTimeout(() => mongoose.connect(dbURI, { useNewUrlParser: true, useCreateIndex: true }), 1000);
+let dbURL = 'mongodb://127.0.0.1/eaTr';
+if (process.env.NODE_ENV === 'production') {
+  dbURL = process.env.DB_HOST || process.env.MONGODB_URI;
+}
+
+console.log("dbURL is set to", dbURL);
+console.log('NODE_ENV is set to', process.env.NODE_ENV);
+
+const connect = () => {
+  setTimeout(() => mongoose.connect(dbURL, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }), 1000);
 }
 
 mongoose.connection.on('connected', () => {
@@ -12,8 +18,8 @@ mongoose.connection.on('connected', () => {
 });
 
 mongoose.connection.on('error', err => {
-  console.log('error: ' + err);
-  return connect('Mongoose connection error');
+  console.log('Mongoose connection error: ' + err);
+  return connect();
 });
 
 mongoose.connection.on('disconnected', () => {
@@ -42,18 +48,20 @@ process.once('SIGUSR2', () => {
     process.kill(process.pid, 'SIGUSR2');
   });
 });
+
 process.on('SIGINT', () => {
   gracefulShutdown('app termination', () => {
     process.exit(0);
   });
 });
+
 process.on('SIGTERM', () => {
   gracefulShutdown('Heroku app shutdown', () => {
     process.exit(0);
   });
 });
 
-//connect();
+connect();
 
 require('./recipes');
 require('./shoppingList');

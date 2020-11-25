@@ -66,6 +66,7 @@ const recipesReadList = (req, res) => {
         .select('recipe')
         .exec((err, chef) => {
             if (!chef) {
+                console.log("No chef found");
                 return res
                     .status(404)
                     .json({

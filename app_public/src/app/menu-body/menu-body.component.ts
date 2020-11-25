@@ -46,7 +46,7 @@ export class MenuBodyComponent implements OnInit {
         recipe = foundrecipe.recipe;
         this.message = !foundrecipe ? '' : 'No recipes found';
         var newItem : Item = { listItem : recipe.ingredients, listItemComplete : false };
-        this.eatrDataService.addItemByChefId('5ec30d3a93f206389c58748c', newItem)
+        this.eatrDataService.addItemByChefId('5fbad08d54734cb04d7ff5bc', newItem)
         .then((item: Item) => {
           console.log('Item saved', item);
           let recipes = this.chef.recipes.slice(0);

@@ -37,7 +37,7 @@ const chefGetAll = (req, res) => {
           .status(404)
           .json(err);
       } else {
-          console.log('chef test', chef)
+        console.log('The chef is', chef);
         return res
           .status(200)
           .json(chef);
