@@ -1,23 +1,26 @@
 <div class="menuBodySpan">
-    <div class="col-12 menuBody row">
-        <div class="recipeIcon" *ngFor="let recipe of recipes">
-            <div class="recipeThumb">
-                <h4>
-                    {{recipe.recipeName}}
-                </h4>
-            </div>
-            <div class="row recipeIconActions">
-                <span class="addToList">
-                    <form (ngSubmit)="addIngredientToShoppingList(recipe._id)">
-                        <button type="submit" style="border: 0; background: none;">
-                            <i class="far fa-plus-square"></i>
-                        </button> 
-                    </form>
-                </span>
-                <span class="recipeExpand">
-                    <a routerLink="/chef/5ec30d3a93f206389c58748c/recipes/{{recipe._id}}"><i class="fas fa-expand-arrows-alt"></i></a>
-                </span>
-            </div>
-        </div>
+  <div class="col-12 menuBody row">
+    <div class="recipeIcon" *ngFor="let recipe of recipes">
+      <div class="recipeThumb">
+        <h4>
+          {{ recipe.recipeName }}
+        </h4>
+      </div>
+      <div class="row recipeIconActions">
+        <span class="addToList">
+          <form (ngSubmit)="addIngredientToShoppingList(recipe._id)">
+            <button type="submit" style="border: 0; background: none">
+              <i class="far fa-plus-square"></i>
+            </button>
+          </form>
+        </span>
+        <span class="recipeExpand">
+          <a
+            routerLink="/chef/5fc6e6f7cb5074f1179e0c82/recipes/{{ recipe._id }}"
+            ><i class="fas fa-expand-arrows-alt"></i
+          ></a>
+        </span>
+      </div>
     </div>
+  </div>
 </div>

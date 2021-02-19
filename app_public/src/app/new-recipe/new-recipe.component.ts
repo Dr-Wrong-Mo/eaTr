@@ -5,15 +5,18 @@ import { Chef, Recipe } from '../chef';
 @Component({
   selector: 'app-new-recipe',
   templateUrl: './new-recipe.component.html',
-  styleUrls: ['./new-recipe.component.css']
+  styleUrls: ['./new-recipe.component.css'],
 })
 export class NewRecipeComponent implements OnInit {
-
   @Input() chef: Chef;
 
-  public newRecipe: Recipe = { recipeName: '', instructions: '', ingredients: '' };
+  public newRecipe: Recipe = {
+    recipeName: '',
+    instructions: '',
+    ingredients: '',
+  };
 
-  public formError: string; 
+  public formError: string;
 
   private formIsValid(): boolean {
     if (this.newRecipe.recipeName && this.newRecipe.instructions) {
@@ -32,8 +35,8 @@ export class NewRecipeComponent implements OnInit {
   public onRecipeSubmit(): void {
     this.formError = '';
     if (this.formIsValid()) {
-      this.eatrDataService.addRecipeByChefId('5ec30d3a93f206389c58748c',
-        this.newRecipe)
+      this.eatrDataService
+        .addRecipeByChefId('5fc6e6f7cb5074f1179e0c82', this.newRecipe)
         .then((recipe: Recipe) => {
           let recipes = this.chef.recipes.slice(0);
           recipes.unshift(recipe);
@@ -45,9 +48,7 @@ export class NewRecipeComponent implements OnInit {
     }
   }
 
-  constructor(private eatrDataService: EatrDataService) { }
+  constructor(private eatrDataService: EatrDataService) {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

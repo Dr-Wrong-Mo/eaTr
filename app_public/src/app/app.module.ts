@@ -31,28 +31,28 @@ import { PageHeaderComponent } from './page-header/page-header.component';
     ReactiveFormsModule,
     RouterModule.forRoot([
       {
-        path:'',
-        component: MenuBodyComponent
+        path: '',
+        component: MenuBodyComponent,
       },
       {
-        path:'newRecipe',
-        component: NewRecipeComponent
+        path: 'newRecipe',
+        component: NewRecipeComponent,
       },
       {
-        path:'shoppingList',
-        component: ShoppingListComponent
+        path: 'shoppingList',
+        component: ShoppingListComponent,
       },
       {
-        path:'newRecipe',
-        component: NewRecipeComponent
+        path: 'newRecipe',
+        component: NewRecipeComponent,
       },
       {
-        path: 'chef/5ec30d3a93f206389c58748c/recipes/:recipeId',
-        component: FullRecipeComponent
-      }
-    ])
+        path: 'chef/5fc6e6f7cb5074f1179e0c82/recipes/:recipeId',
+        component: FullRecipeComponent,
+      },
+    ]),
   ],
   providers: [],
-  bootstrap: [FrameworkComponent]
+  bootstrap: [FrameworkComponent],
 })
-export class AppModule { }
+export class AppModule {}

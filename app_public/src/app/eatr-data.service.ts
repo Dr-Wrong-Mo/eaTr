@@ -5,62 +5,60 @@ import { environment } from '../environments/environment';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EatrDataService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   private apiBaseUrl = environment.apiBaseUrl; // 'http://localhost:3000/api'
 
   //Recipes Methods
 
   public addRecipeByChefId(chefId: string, formData: Recipe): Promise<Recipe> {
-    const url: string = `${this.apiBaseUrl}/chef/5ec30d3a93f206389c58748c/recipes`;
+    const url: string = `${this.apiBaseUrl}/chef/5fc6e6f7cb5074f1179e0c82/recipes`;
     return this.http
       .post(url, formData)
       .toPromise()
-      .then(response => response as any)
+      .then((response) => response as any)
       .catch(this.handleError);
   }
 
   public getRecipes(): Promise<Recipe[]> {
-    const url: string = `${this.apiBaseUrl}/chef/5ec30d3a93f206389c58748c/recipes`;
+    const url: string = `${this.apiBaseUrl}/chef/5fc6e6f7cb5074f1179e0c82/recipes`;
     return this.http
       .get(url)
       .toPromise()
-      .then(response => response as Recipe[])
+      .then((response) => response as Recipe[])
       .catch(this.handleError);
   }
- 
-    public getRecipeById(recipeId: string) {
-    const url: string = `${this.apiBaseUrl}/chef/5ec30d3a93f206389c58748c/recipes/${recipeId}`;
+
+  public getRecipeById(recipeId: string) {
+    const url: string = `${this.apiBaseUrl}/chef/5fc6e6f7cb5074f1179e0c82/recipes/${recipeId}`;
     return this.http
       .get(url)
       .toPromise()
-      .then(response => response)
+      .then((response) => response)
       .catch(this.handleError);
-}
+  }
 
+  //Shopping List Methods
 
-//Shopping List Methods
-
-public addItemByChefId(chefId: string, formData: Item): Promise<Item> {
-  const url: string = `${this.apiBaseUrl}/chef/5ec30d3a93f206389c58748c/shoppingList`;
-  return this.http
-    .post(url, formData)
-    .toPromise()
-    .then(response => response as any)
-    .catch(this.handleError);
-}
-public getItems(): Promise<Item[]> {
-  const url: string = `${this.apiBaseUrl}/chef/5ec30d3a93f206389c58748c/shoppingList`;
-  return this.http
-    .get(url)
-    .toPromise()
-    .then(response => response as Item[])
-    .catch(this.handleError);
-}
+  public addItemByChefId(chefId: string, formData: Item): Promise<Item> {
+    const url: string = `${this.apiBaseUrl}/chef/5fc6e6f7cb5074f1179e0c82/shoppingList`;
+    return this.http
+      .post(url, formData)
+      .toPromise()
+      .then((response) => response as any)
+      .catch(this.handleError);
+  }
+  public getItems(): Promise<Item[]> {
+    const url: string = `${this.apiBaseUrl}/chef/5fc6e6f7cb5074f1179e0c82/shoppingList`;
+    return this.http
+      .get(url)
+      .toPromise()
+      .then((response) => response as Item[])
+      .catch(this.handleError);
+  }
 
   private handleError(error: any): Promise<any> {
     console.error('Something has gone wrong', error);
