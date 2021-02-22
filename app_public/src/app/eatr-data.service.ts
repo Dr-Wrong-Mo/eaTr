@@ -67,6 +67,15 @@ export class EatrDataService {
       .catch(this.handleError);
   }
 
+  public itemDeleteById(chefId: string, itemId: string) {
+    const url: string = `${this.apiBaseUrl}/chef/${chefId}/item/${itemId}`;
+    return this.http
+      .delete(url)
+      .toPromise()
+      .then((response) => response)
+      .catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('Something has gone wrong', error);
     return Promise.reject(error.message || error);

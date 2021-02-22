@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { EatrDataService } from '../eatr-data.service';
 import { chefId } from '../../environments/environment';
-import { FrameworkComponent } from '../framework/framework.component';
 import { Recipe } from '../chef';
 
 @Component({
@@ -20,7 +19,6 @@ export class FullRecipeComponent implements OnInit {
 
   constructor(
     private eatrDataService: EatrDataService,
-    private frameworkComponent: FrameworkComponent,
     private route: ActivatedRoute,
     private router: Router
   ) {
@@ -36,6 +34,7 @@ export class FullRecipeComponent implements OnInit {
   }
 
   public recipeDeleteById(): void {
+    console.log('this', this);
     if (window.confirm('Deleting Recipe')) {
       this.eatrDataService
         .recipeDeleteById(`${chefId}`, this.recipe._id)

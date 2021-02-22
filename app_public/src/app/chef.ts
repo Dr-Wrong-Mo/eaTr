@@ -14,6 +14,7 @@ export class Recipe {
 }
 
 export class Item {
+  _id: string;
   listItem: string;
   listItemComplete;
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { EatrDataService } from '../eatr-data.service';
 import { chefId } from '../../environments/environment';
-import { FrameworkComponent } from '../framework/framework.component';
 import { Item, Chef } from '../chef';
 
 @Component({
@@ -12,10 +11,17 @@ import { Item, Chef } from '../chef';
 export class ShoppingListComponent implements OnInit {
   @Input() chef: Chef;
 
+  constructor(private eatrDataService: EatrDataService) {
+    this.item = new Item();
+  }
+
+  public item: Item;
+  public items: Item[];
+  public newItem: Item = { _id: '', listItem: '', listItemComplete: false };
   shoppingListItems: any[] = [];
-  public newItem: Item = { listItem: '', listItemComplete: false };
 
   public formError: string;
+  public message: string;
 
   private formIsValid(): boolean {
     if (this.newItem.listItem) {
@@ -27,6 +33,14 @@ export class ShoppingListComponent implements OnInit {
 
   private resetItemForm(): void {
     this.newItem.listItem = 'Item added. Add more items.';
+  }
+
+  private getItems(): void {
+    this.message = 'Searching for things to eat';
+    this.eatrDataService.getItems().then((foundItems) => {
+      this.items = foundItems;
+      this.message = foundItems.length > 0 ? '' : 'No recipes found';
+    });
   }
 
   public onItemSubmit(): void {
@@ -43,18 +57,13 @@ export class ShoppingListComponent implements OnInit {
     }
   }
 
-  constructor(private eatrDataService: EatrDataService) {}
-
-  public items: Item[];
-
-  public message: string;
-
-  private getItems(): void {
-    this.message = 'Searching for things to eat';
-    this.eatrDataService.getItems().then((foundItems) => {
-      this.items = foundItems;
-      this.message = foundItems.length > 0 ? '' : 'No recipes found';
-    });
+  public itemDeleteById(i): void {
+    if (window.confirm('Deleting Item')) {
+      this.eatrDataService
+        .itemDeleteById(`${chefId}`, this.items[i]._id)
+        .then(() => {});
+      this.getItems();
+    }
   }
 
   ngOnInit() {

@@ -34,11 +34,12 @@ export class MenuBodyComponent implements OnInit {
   }
 
   public addIngredientToShoppingList(recipeId: string): void {
-    var recipe: Recipe;
+    let recipe: Recipe;
     this.eatrDataService.getRecipeById(recipeId).then((foundrecipe) => {
       recipe = foundrecipe.recipe;
       this.message = !foundrecipe ? '' : 'No recipes found';
-      var newItem: Item = {
+      let newItem: Item = {
+        _id: recipe._id,
         listItem: recipe.ingredients,
         listItemComplete: false,
       };

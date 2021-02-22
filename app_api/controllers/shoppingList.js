@@ -164,19 +164,40 @@ const shoppingListDeleteList = (req, res) => {
 };
 
 const shoppingListDeleteOne = (req, res) => {
-  const { itemid } = req.params;
-  if (itemid) {
-    Itm.findByIdAndRemove(itemid).exec((err, item) => {
-      if (err) {
-        return res.status(404).json(err);
-      }
-      res.status(204).json(null);
-    });
-  } else {
-    res.status(404).json({
-      message: 'No Item Found',
-    });
+  const { chefid, itemid } = req.params;
+  if (!chefid || !itemid) {
+    return res
+      .status(404)
+      .json({ message: 'Not found, chefid and itemid are both required' });
   }
+  Chf.findById(chefid)
+    .select('item')
+    .exec((err, chef) => {
+      if (!chef) {
+        return res.status(404).json({
+          message: 'Chef not found',
+        });
+      } else if (err) {
+        return res.status(400).json(err);
+      } else {
+        if (chef.item && chef.item.length > 0) {
+          if (!chef.item.id(itemid)) {
+            return res.status(404).json({ message: 'Item not found' });
+          } else {
+            chef.item.id(itemid).remove();
+            chef.save((err) => {
+              if (err) {
+                return res.status(404).json(err);
+              } else {
+                res.status(204).json(null);
+              }
+            });
+          }
+        } else {
+          res.status(404).json({ message: 'No item to delete' });
+        }
+      }
+    });
 };
 
 module.exports = {
