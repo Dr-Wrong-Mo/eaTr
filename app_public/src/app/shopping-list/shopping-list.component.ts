@@ -58,12 +58,10 @@ export class ShoppingListComponent implements OnInit {
   }
 
   public itemDeleteById(i): void {
-    if (window.confirm('Deleting Item')) {
-      this.eatrDataService
-        .itemDeleteById(`${chefId}`, this.items[i]._id)
-        .then(() => {});
-      this.getItems();
-    }
+    this.eatrDataService
+      .itemDeleteById(`${chefId}`, this.items[i]._id)
+      .then(() => {});
+    this.getItems();
   }
 
   ngOnInit() {

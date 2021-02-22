@@ -1,0 +1,10 @@
+To Do {
+
+1. Resolve error that occurs when submitting new items to shopping list.
+2. Resolve WDS Disconnected message
+
+}
+
+Done {
+
+}
