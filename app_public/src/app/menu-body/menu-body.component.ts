@@ -29,12 +29,10 @@ export class MenuBodyComponent implements OnInit {
     this.eatrDataService.getRecipes().then((foundRecipes) => {
       this.recipes = foundRecipes;
       this.message = foundRecipes.length > 0 ? '' : 'No recipes found';
-      console.log(foundRecipes); //this can be removed
     });
   }
 
   public addIngredientToShoppingList(recipeId: string): void {
-    console.log('add ingredients to shopping list');
     var recipe: Recipe;
     this.eatrDataService.getRecipeById(recipeId).then((foundrecipe) => {
       recipe = foundrecipe.recipe;
@@ -46,7 +44,6 @@ export class MenuBodyComponent implements OnInit {
       this.eatrDataService
         .addItemByChefId('5fc6e6f7cb5074f1179e0c82', newItem)
         .then((item: Item) => {
-          console.log('Item saved', item);
           let recipes = this.chef.recipes.slice(0);
           recipes.unshift(item);
           this.chef.recipes = recipes;

@@ -21,7 +21,6 @@ const chefCreate = (req, res) => {
 //Read
 
 const chefGetAll = (req, res) => {
-  console.log('fetching API method chefGetAll');
   Chf.find({}).exec((err, chef) => {
     if (!chef) {
       return res.status(404).json({
@@ -30,20 +29,13 @@ const chefGetAll = (req, res) => {
     } else if (err) {
       return res.status(404).json(err);
     } else {
-      console.log('Get chef', chef);
-      /* console.log(
-        'Get mongoose collection',
-        mongoose.Schema.Types.DocumentArray.set
-      ); */
       return res.status(200).json(chef);
     }
   });
 };
 
 const chefReadOne = (req, res) => {
-  console.log('fetching API method chefReadOne');
   Chf.findById(req.params.chefid).exec((err, chef) => {
-    console.log('chef', chef);
     if (!chef) {
       return res.status(404).json({
         message: 'Chef not found',
@@ -51,7 +43,6 @@ const chefReadOne = (req, res) => {
     } else if (err) {
       return res.status(404).json(err);
     } else {
-      console.log('API Method chefReadOne: fetching chef', chef);
       return res.status(200).json(chef);
     }
   });

@@ -34,12 +34,8 @@ export class ShoppingListComponent implements OnInit {
       this.eatrDataService
         .addItemByChefId('5fc6e6f7cb5074f1179e0c82', this.newItem)
         .then((item: Item) => {
-          console.log('Item saved', item);
-          let recipes = this.chef.recipes.slice(0);
-          recipes.unshift(item);
           this.resetItemForm();
           this.getItems();
-          //this.chef.recipes = recipes;
         });
     } else {
       this.formError = 'All fields required, please try again';

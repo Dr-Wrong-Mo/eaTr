@@ -43,8 +43,6 @@ const shoppingListCreateList = (req, res) => {
   }
 };
 
-const shoppingListAddFullRecipe = (req, res) => {}; //Need to create this controller
-
 //Read
 
 const shoppingListReadList = (req, res) => {
@@ -184,8 +182,6 @@ const shoppingListDeleteOne = (req, res) => {
 module.exports = {
   doAddshoppingList,
   shoppingListCreateList,
-  //shoppingListCreateItem,
-  shoppingListAddFullRecipe,
   shoppingListReadList,
   shoppingListReadOne,
   shoppingListUpdateList,

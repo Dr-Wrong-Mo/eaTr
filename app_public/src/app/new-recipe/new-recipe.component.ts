@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { EatrDataService } from '../eatr-data.service';
 import { Chef, Recipe } from '../chef';
 
@@ -11,6 +12,7 @@ export class NewRecipeComponent implements OnInit {
   @Input() chef: Chef;
 
   public newRecipe: Recipe = {
+    _id: '',
     recipeName: '',
     instructions: '',
     ingredients: '',
@@ -27,6 +29,7 @@ export class NewRecipeComponent implements OnInit {
   }
 
   private resetAndHideRecipeForm(): void {
+    this.newRecipe._id = '';
     this.newRecipe.recipeName = '';
     this.newRecipe.instructions = '';
     this.newRecipe.ingredients = '';
@@ -38,17 +41,18 @@ export class NewRecipeComponent implements OnInit {
       this.eatrDataService
         .addRecipeByChefId('5fc6e6f7cb5074f1179e0c82', this.newRecipe)
         .then((recipe: Recipe) => {
-          let recipes = this.chef.recipes.slice(0);
-          recipes.unshift(recipe);
-          this.chef.recipes = recipes;
           this.resetAndHideRecipeForm();
+          this.router.navigate(['']);
         });
     } else {
       this.formError = 'All fields required, please try again';
     }
   }
 
-  constructor(private eatrDataService: EatrDataService) {}
+  constructor(
+    private eatrDataService: EatrDataService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 }

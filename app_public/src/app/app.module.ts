@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, NavigationExtras } from '@angular/router';
 
 import { FrameworkComponent } from './framework/framework.component';
 import { FullRecipeComponent } from './full-recipe/full-recipe.component';

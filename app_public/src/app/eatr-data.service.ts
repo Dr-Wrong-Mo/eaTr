@@ -10,10 +10,9 @@ import { Observable } from 'rxjs';
 export class EatrDataService {
   constructor(private http: HttpClient) {}
 
-  private apiBaseUrl = environment.apiBaseUrl; // 'http://localhost:3000/api'
+  private apiBaseUrl = environment.apiBaseUrl;
 
   //Recipes Methods
-
   public addRecipeByChefId(chefId: string, formData: Recipe): Promise<Recipe> {
     const url: string = `${this.apiBaseUrl}/chef/5fc6e6f7cb5074f1179e0c82/recipes`;
     return this.http
@@ -41,8 +40,16 @@ export class EatrDataService {
       .catch(this.handleError);
   }
 
-  //Shopping List Methods
+  public recipeDeleteById(chefId: string, recipeId: string) {
+    const url: string = `${this.apiBaseUrl}/chef/5fc6e6f7cb5074f1179e0c82/recipes/${recipeId}`;
+    return this.http
+      .delete(url)
+      .toPromise()
+      .then((response) => response)
+      .catch(this.handleError);
+  }
 
+  //Shopping List Methods
   public addItemByChefId(chefId: string, formData: Item): Promise<Item> {
     const url: string = `${this.apiBaseUrl}/chef/5fc6e6f7cb5074f1179e0c82/shoppingList`;
     return this.http

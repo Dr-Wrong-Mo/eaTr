@@ -4,7 +4,6 @@ const Chf = mongoose.model('Chefs');
 
 //Create
 const doAddRecipe = (req, res, chef) => {
-  console.log('doAddRecipe method being used');
   if (!chef) {
     res.status(404).json({ message: 'Chef not found' });
   } else {
@@ -26,7 +25,6 @@ const doAddRecipe = (req, res, chef) => {
 };
 
 const recipesCreate = (req, res) => {
-  console.log('recipesCreate method being used');
   const chefId = req.params.chefid;
   if (chefId) {
     Chf.findById(chefId)
@@ -45,7 +43,6 @@ const recipesCreate = (req, res) => {
 
 //Read
 const recipesReadList = (req, res) => {
-  console.log('fetching API method recipesReadList');
   Chf.findById(req.params.chefid)
     .select('recipe')
     .exec((err, chef) => {
@@ -73,7 +70,6 @@ const recipesReadList = (req, res) => {
 };
 
 const recipesReadOne = (req, res) => {
-  console.log('fetching API method recipesReadOne');
   Chf.findById(req.params.chefid)
     .select('recipe')
     .exec((err, chef) => {
@@ -156,21 +152,42 @@ const recipesUpdateOne = (req, res) => {
     });
 };
 
-//Delete
 const recipesDeleteOne = (req, res) => {
-  const { recipeid } = req.params;
-  if (recipeid) {
-    Rec.findByIdAndRemove(recipeid).exec((err, recipe) => {
-      if (err) {
-        return res.status(404).json(err);
-      }
-      res.status(204).json(null);
-    });
-  } else {
-    res.status(404).json({
-      message: 'No Item Found',
-    });
+  const { chefid, recipeid } = req.params;
+  if (!chefid || !recipeid) {
+    return res
+      .status(404)
+      .json({ message: 'Not found, chefid and recipeid are both required' });
   }
+
+  Chf.findById(chefid)
+    .select('recipe')
+    .exec((err, chef) => {
+      if (!chef) {
+        return res.status(404).json({
+          message: 'Chef not found',
+        });
+      } else if (err) {
+        return res.status(400).json(err);
+      } else {
+        if (chef.recipe && chef.recipe.length > 0) {
+          if (!chef.recipe.id(recipeid)) {
+            return res.status(404).json({ message: 'Recipe not found' });
+          } else {
+            chef.recipe.id(recipeid).remove();
+            chef.save((err) => {
+              if (err) {
+                return res.status(404).json(err);
+              } else {
+                res.status(204).json(null);
+              }
+            });
+          }
+        } else {
+          res.status(404).json({ message: 'No Recipe to delete' });
+        }
+      }
+    });
 };
 
 module.exports = {

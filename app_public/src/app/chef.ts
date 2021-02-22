@@ -7,6 +7,7 @@
 } */
 
 export class Recipe {
+  _id: string;
   recipeName: string;
   instructions: string;
   ingredients: string;
@@ -18,7 +19,7 @@ export class Item {
 }
 
 export class Chef {
-    _id: string;
-    chefName: string;
-    recipes: any[];
-  }
+  _id: string;
+  chefName: string;
+  recipes: any[];
+}
