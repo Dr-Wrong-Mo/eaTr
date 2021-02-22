@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { EatrDataService } from '../eatr-data.service';
+import { chefId } from '../../environments/environment';
 import { FrameworkComponent } from '../framework/framework.component';
 import { Item, Chef } from '../chef';
 
@@ -32,7 +33,7 @@ export class ShoppingListComponent implements OnInit {
     this.formError = '';
     if (this.formIsValid()) {
       this.eatrDataService
-        .addItemByChefId('5fc6e6f7cb5074f1179e0c82', this.newItem)
+        .addItemByChefId(`${chefId}`, this.newItem)
         .then((item: Item) => {
           this.resetItemForm();
           this.getItems();

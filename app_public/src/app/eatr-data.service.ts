@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Recipe, Item } from './chef';
-import { environment } from '../environments/environment';
+import { environment, chefId } from '../environments/environment';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -14,7 +14,7 @@ export class EatrDataService {
 
   //Recipes Methods
   public addRecipeByChefId(chefId: string, formData: Recipe): Promise<Recipe> {
-    const url: string = `${this.apiBaseUrl}/chef/5fc6e6f7cb5074f1179e0c82/recipes`;
+    const url: string = `${this.apiBaseUrl}/chef/${chefId}/recipes`;
     return this.http
       .post(url, formData)
       .toPromise()
@@ -23,7 +23,7 @@ export class EatrDataService {
   }
 
   public getRecipes(): Promise<Recipe[]> {
-    const url: string = `${this.apiBaseUrl}/chef/5fc6e6f7cb5074f1179e0c82/recipes`;
+    const url: string = `${this.apiBaseUrl}/chef/${chefId}/recipes`;
     return this.http
       .get(url)
       .toPromise()
@@ -32,7 +32,7 @@ export class EatrDataService {
   }
 
   public getRecipeById(recipeId: string) {
-    const url: string = `${this.apiBaseUrl}/chef/5fc6e6f7cb5074f1179e0c82/recipes/${recipeId}`;
+    const url: string = `${this.apiBaseUrl}/chef/${chefId}/recipes/${recipeId}`;
     return this.http
       .get(url)
       .toPromise()
@@ -41,7 +41,7 @@ export class EatrDataService {
   }
 
   public recipeDeleteById(chefId: string, recipeId: string) {
-    const url: string = `${this.apiBaseUrl}/chef/5fc6e6f7cb5074f1179e0c82/recipes/${recipeId}`;
+    const url: string = `${this.apiBaseUrl}/chef/${chefId}/recipes/${recipeId}`;
     return this.http
       .delete(url)
       .toPromise()
@@ -51,7 +51,7 @@ export class EatrDataService {
 
   //Shopping List Methods
   public addItemByChefId(chefId: string, formData: Item): Promise<Item> {
-    const url: string = `${this.apiBaseUrl}/chef/5fc6e6f7cb5074f1179e0c82/shoppingList`;
+    const url: string = `${this.apiBaseUrl}/chef/${chefId}/shoppingList`;
     return this.http
       .post(url, formData)
       .toPromise()
@@ -59,7 +59,7 @@ export class EatrDataService {
       .catch(this.handleError);
   }
   public getItems(): Promise<Item[]> {
-    const url: string = `${this.apiBaseUrl}/chef/5fc6e6f7cb5074f1179e0c82/shoppingList`;
+    const url: string = `${this.apiBaseUrl}/chef/${chefId}/shoppingList`;
     return this.http
       .get(url)
       .toPromise()

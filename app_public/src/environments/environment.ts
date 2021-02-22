@@ -4,8 +4,10 @@
 
 export const environment = {
   apiBaseUrl: 'http://localhost:3000/api',
-  production: false
+  production: false,
 };
+
+export const chefId: String = '5fbe852aafa666c5232a9af6';
 
 /*
  * For easier debugging in development mode, you can import the following file

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { EatrDataService } from '../eatr-data.service';
+import { chefId } from '../../environments/environment';
 import { FrameworkComponent } from '../framework/framework.component';
 import { Router } from '@angular/router';
 import { Chef, Recipe, Item } from '../chef'; //commented out ingredients from recipe type
@@ -42,7 +43,7 @@ export class MenuBodyComponent implements OnInit {
         listItemComplete: false,
       };
       this.eatrDataService
-        .addItemByChefId('5fc6e6f7cb5074f1179e0c82', newItem)
+        .addItemByChefId(`${chefId}`, newItem)
         .then((item: Item) => {
           let recipes = this.chef.recipes.slice(0);
           recipes.unshift(item);

@@ -1,10 +1,7 @@
 const mongoose = require('mongoose');
 const readLine = require('readline');
 
-let dbURL = 'mongodb://127.0.0.1:27017/eatr';
-if (process.env.NODE_ENV === 'production') {
-  dbURL = process.env.DB_HOST || process.env.MONGODB_URI;
-}
+let dbURL = process.env.DB_HOST;
 
 console.log('dbURL is set to', dbURL);
 console.log('NODE_ENV is set to ', process.env.NODE_ENV);

@@ -37,11 +37,11 @@ router
   .delete(ctrlShoppingList.shoppingListDeleteList);
 
 // shopping list items
-router.route('/chef/:chefid/shoppingList/5eb7bb14689a7813d445ac2f/item');
+router.route(`/chef/:chefid/shoppingList/${process.env.chefId}/item`);
 //.post(ctrlShoppingList.shoppingListAddFullRecipe);
 
 router
-  .route('/chef/:chefid/shoppingList/5eb7bb14689a7813d445ac2f/item/:itemid')
+  .route(`/chef/:chefid/shoppingList/${process.env.chefId}/item/:itemid`)
   .get(ctrlShoppingList.shoppingListReadOne)
   .put(ctrlShoppingList.shoppingListUpdateOne)
   .delete(ctrlShoppingList.shoppingListDeleteOne);

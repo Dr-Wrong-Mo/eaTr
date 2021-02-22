@@ -47,7 +47,7 @@ import { PageHeaderComponent } from './page-header/page-header.component';
         component: NewRecipeComponent,
       },
       {
-        path: 'chef/5fc6e6f7cb5074f1179e0c82/recipes/:recipeId',
+        path: 'chef/5fbe852aafa666c5232a9af6/recipes/:recipeId',
         component: FullRecipeComponent,
       },
     ]),

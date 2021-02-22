@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { EatrDataService } from '../eatr-data.service';
+import { chefId } from '../../environments/environment';
 import { Chef, Recipe } from '../chef';
 
 @Component({
@@ -39,7 +40,7 @@ export class NewRecipeComponent implements OnInit {
     this.formError = '';
     if (this.formIsValid()) {
       this.eatrDataService
-        .addRecipeByChefId('5fc6e6f7cb5074f1179e0c82', this.newRecipe)
+        .addRecipeByChefId(`${chefId}`, this.newRecipe)
         .then((recipe: Recipe) => {
           this.resetAndHideRecipeForm();
           this.router.navigate(['']);

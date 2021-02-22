@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { EatrDataService } from '../eatr-data.service';
+import { chefId } from '../../environments/environment';
 import { FrameworkComponent } from '../framework/framework.component';
 import { Recipe } from '../chef';
 
@@ -37,7 +38,7 @@ export class FullRecipeComponent implements OnInit {
   public recipeDeleteById(): void {
     if (window.confirm('Deleting Recipe')) {
       this.eatrDataService
-        .recipeDeleteById('5fc6e6f7cb5074f1179e0c82', this.recipe._id)
+        .recipeDeleteById(`${chefId}`, this.recipe._id)
         .then(() => {
           this.router.navigate(['']);
         });
