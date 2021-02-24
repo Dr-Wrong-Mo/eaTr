@@ -31,8 +31,6 @@ export class ShoppingListComponent implements OnInit {
     }
   }
 
-  checkValue: boolean[] = [];
-
   private resetItemForm(): void {
     this.newItem.listItem = 'Item added. Add more items.';
   }
