@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Recipe, Item } from './chef';
+import { Recipe, Item, Chef } from './chef';
 import { environment, chefId } from '../environments/environment';
 import { Observable } from 'rxjs';
 
@@ -62,6 +62,20 @@ export class EatrDataService {
     const url: string = `${this.apiBaseUrl}/chef/${chefId}/shoppingList`;
     return this.http
       .get(url)
+      .toPromise()
+      .then((response) => response as Item[])
+      .catch(this.handleError);
+  }
+
+  public updateItem(
+    chefId: string,
+    itemId: string,
+    formData: Item
+  ): Promise<Item[]> {
+    const url: string = `${this.apiBaseUrl}/chef/${chefId}/item/${itemId}`;
+    formData.listItemComplete = !formData.listItemComplete;
+    return this.http
+      .put(url, formData)
       .toPromise()
       .then((response) => response as Item[])
       .catch(this.handleError);

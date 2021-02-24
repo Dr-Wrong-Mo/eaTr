@@ -74,15 +74,17 @@ const shoppingListReadList = (req, res) => {
 };
 
 const shoppingListReadOne = (req, res) => {
-  Itm.findById(req.params.itemid).exec((err, item) => {
-    if (!item) {
+  Chf.findById(req.params.chefid).exec((err, chef) => {
+    if (!chef) {
       return res.status(404).json({
         message: 'Item not found',
       });
     } else if (err) {
       return res.status(404).json(err);
     } else {
-      return res.status(200).json(item);
+      return res
+        .status(200)
+        .json(chef.item.find(({ id }) => id === req.params.itemid));
     }
   });
 };
@@ -122,9 +124,10 @@ const shoppingListUpdateOne = (req, res) => {
       message: 'Not found, itemid is required',
     });
   }
-  Itm.findById(req.params.itemid)
+  Chf.findById(req.params.chefid)
     .select('item')
-    .exec((err, item) => {
+    .exec((err, chef) => {
+      let item = chef.item.find(({ id }) => id === req.params.itemid);
       if (!item) {
         return res.status(404).json({
           message: 'itemid not found',
@@ -133,10 +136,8 @@ const shoppingListUpdateOne = (req, res) => {
         return res.status(400).json(err);
       }
       item.listItem = req.body.listItem;
-      item.listQuantity = req.body.listQuantity;
-      item.listUnitOfMeasure = req.body.listUnitOfMeasure;
       item.listItemComplete = req.body.listItemComplete;
-      item.save((err, Itm) => {
+      chef.save((err, Itm) => {
         if (err) {
           res.status(404).json(err);
         } else {

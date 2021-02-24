@@ -269,3 +269,7 @@ a.newRecipeButton {
 .shoppingList {
   padding: 15px;
 }
+
+input[type="checkbox"]:checked + label.strikethrough {
+  text-decoration: line-through;
+}

@@ -31,6 +31,8 @@ export class ShoppingListComponent implements OnInit {
     }
   }
 
+  checkValue: boolean[] = [];
+
   private resetItemForm(): void {
     this.newItem.listItem = 'Item added. Add more items.';
   }
@@ -57,13 +59,20 @@ export class ShoppingListComponent implements OnInit {
     }
   }
 
+  public updateItem(i): void {
+    this.eatrDataService
+      .updateItem(`${chefId}`, this.items[i]._id, this.items[i])
+      .then(() => {
+        this.resetItemForm();
+        this.getItems();
+      });
+  }
+
   public itemDeleteById(i): void {
-    if (window.confirm('Deleting Item')) {
-      this.eatrDataService
-        .itemDeleteById(`${chefId}`, this.items[i]._id)
-        .then(() => {});
-      this.getItems();
-    }
+    this.eatrDataService
+      .itemDeleteById(`${chefId}`, this.items[i]._id)
+      .then(() => {});
+    this.getItems();
   }
 
   ngOnInit() {
