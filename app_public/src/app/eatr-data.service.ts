@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Recipe, Item, Chef } from './chef';
-import { environment, chefId } from '../environments/environment';
+import { environment } from '../environments/environment';
+import { chefId } from '../environments/environment.local';
 import { Observable } from 'rxjs';
 
 @Injectable({

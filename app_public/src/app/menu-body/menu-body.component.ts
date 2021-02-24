@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { EatrDataService } from '../eatr-data.service';
-import { chefId } from '../../environments/environment';
+import { chefId } from '../../environments/environment.local';
 import { FrameworkComponent } from '../framework/framework.component';
 import { Router } from '@angular/router';
 import { Chef, Recipe, Item } from '../chef'; //commented out ingredients from recipe type

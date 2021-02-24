@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { EatrDataService } from '../eatr-data.service';
-import { chefId } from '../../environments/environment';
+import { chefId } from '../../environments/environment.local';
 import { Chef, Recipe } from '../chef';
 
 @Component({

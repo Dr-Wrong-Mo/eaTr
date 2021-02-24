@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { EatrDataService } from '../eatr-data.service';
-import { chefId } from '../../environments/environment';
+import { chefId } from '../../environments/environment.local';
 import { Item, Chef } from '../chef';
 
 @Component({
