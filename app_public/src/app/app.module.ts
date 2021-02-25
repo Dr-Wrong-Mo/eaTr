@@ -2,23 +2,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule, NavigationExtras } from '@angular/router';
 
 import { FrameworkComponent } from './framework/framework.component';
 import { FullRecipeComponent } from './full-recipe/full-recipe.component';
 import { MenuBodyComponent } from './menu-body/menu-body.component';
-import { TitleBarComponent } from './title-bar/title-bar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NewRecipeComponent } from './new-recipe/new-recipe.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
+import { RoutingModule } from './routing/routing.module';
 
 @NgModule({
   declarations: [
     FrameworkComponent,
     FullRecipeComponent,
     MenuBodyComponent,
-    TitleBarComponent,
     SidebarComponent,
     NewRecipeComponent,
     ShoppingListComponent,
@@ -29,28 +27,7 @@ import { PageHeaderComponent } from './page-header/page-header.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([
-      {
-        path: '',
-        component: MenuBodyComponent,
-      },
-      {
-        path: 'newRecipe',
-        component: NewRecipeComponent,
-      },
-      {
-        path: 'shoppingList',
-        component: ShoppingListComponent,
-      },
-      {
-        path: 'newRecipe',
-        component: NewRecipeComponent,
-      },
-      {
-        path: 'chef/5fbe852aafa666c5232a9af6/recipes/:recipeId',
-        component: FullRecipeComponent,
-      },
-    ]),
+    RoutingModule,
   ],
   providers: [],
   bootstrap: [FrameworkComponent],

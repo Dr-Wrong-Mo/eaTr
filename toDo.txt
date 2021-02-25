@@ -1,13 +1,25 @@
 To Do {
 
-    1. Resolve error that occurs when submitting new items to shopping list.
-    2. Resolve WDS Disconnected message
+    1. Resolve error that occurs when submitting new items to shopping list
+    2. Create an about page
     3. Sort order of shopping list by complete status
-
+    4. Function to clear all completed items on shopping list
+    5. Image upload and storage for recipes
+    6. User authentication with password reset options
+    7. Landing page with tutorial for new users
+    8. Add Edit Recipe page
+    9. Deploy app
+    10. Add tags for recipes
+    11. Add search function
+    12. Add weather based recommendations - sidebare on main page
+    13. Add 'Forgot Something?' tool - sidebar on shopping list
+    
 }
 
 Done {
 
-    1. Checkboxes on shopping list update listItemComplete in database and strikethrough text
+    1. Add function to delete recipes
+    2. Add functin to delete items on shopping list
+    3. Checkboxes on shopping list update listItemComplete in database and strikethrough text
 
 }
