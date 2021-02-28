@@ -11,6 +11,7 @@ import { NewRecipeComponent } from './new-recipe/new-recipe.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { RoutingModule } from './routing/routing.module';
+import { SortChecklistPipe } from './sort-checklist.pipe';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { RoutingModule } from './routing/routing.module';
     NewRecipeComponent,
     ShoppingListComponent,
     PageHeaderComponent,
+    SortChecklistPipe,
   ],
   imports: [
     BrowserModule,

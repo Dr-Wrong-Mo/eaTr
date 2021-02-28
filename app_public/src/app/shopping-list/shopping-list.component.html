@@ -17,7 +17,7 @@
               id="listItem"
               name="listItem"
               required="required"
-              value="Add list item and quantity"
+              placeholder="Add list item and quantity"
               class="col-8 form-control"
               onclick="this.value='';this.style.color='black';"
               [(ngModel)]="newItem.listItem"
@@ -35,7 +35,13 @@
         </form>
       </div>
     </div>
-    <div class="col-sm-12 col-md-3" *ngFor="let item of items; let i = index">
+    <div
+      class="col-sm-12 col-md-3"
+      *ngFor="
+        let item of items | sortChecklist: 'listItemComplete';
+        let i = index
+      "
+    >
       <span *ngIf="item.listItemComplete == true">
         <input
           type="checkbox"

@@ -34,7 +34,6 @@ export class FullRecipeComponent implements OnInit {
   }
 
   public recipeDeleteById(): void {
-    console.log('this', this);
     if (window.confirm('Deleting Recipe')) {
       this.eatrDataService
         .recipeDeleteById(`${chefId}`, this.recipe._id)
