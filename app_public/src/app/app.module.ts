@@ -12,6 +12,7 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { RoutingModule } from './routing/routing.module';
 import { SortChecklistPipe } from './sort-checklist.pipe';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SortChecklistPipe } from './sort-checklist.pipe';
     ShoppingListComponent,
     PageHeaderComponent,
     SortChecklistPipe,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

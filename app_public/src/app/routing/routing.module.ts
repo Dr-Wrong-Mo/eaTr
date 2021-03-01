@@ -6,11 +6,16 @@ import { FullRecipeComponent } from '../full-recipe/full-recipe.component';
 import { MenuBodyComponent } from '../menu-body/menu-body.component';
 import { NewRecipeComponent } from '../new-recipe/new-recipe.component';
 import { ShoppingListComponent } from '../shopping-list/shopping-list.component';
+import { AboutComponent } from '../about/about.component';
 
 const routes: Routes = [
   {
     path: '',
     component: MenuBodyComponent,
+  },
+  {
+    path: 'about',
+    component: AboutComponent,
   },
   {
     path: 'newRecipe',
@@ -25,7 +30,7 @@ const routes: Routes = [
     component: NewRecipeComponent,
   },
   {
-    path: 'chef/5fbe852aafa666c5232a9af6/recipes/:recipeId',
+    path: 'chef/:chefId/recipes/:recipeId',
     component: FullRecipeComponent,
   },
 ];

@@ -1,17 +1,16 @@
 To Do {
 
-    1. Resolve error that occurs when submitting new items to shopping list
-    2. Create an about page
-    3. Function to clear all completed items on shopping list
-    4. Image upload and storage for recipes
-    5. User authentication with password reset options
-    6. Landing page with tutorial for new users
-    7. Add Edit Recipe page
-    8. Deploy app
-    9. Add tags for recipes
-    10. Add search function
-    11. Add weather based recommendations - sidebare on main page
-    12. Add 'Forgot Something?' tool - sidebar on shopping list
+    1. Button up the about page
+    2. Function to clear all completed items on shopping list
+    3. Image upload and storage for recipes
+    4. User authentication with password reset options
+    5. Landing page with tutorial for new users
+    6. Add Edit Recipe page
+    7. Deploy app
+    8. Add tags for recipes
+    9. Add search function
+    10. Add weather based recommendations - sidebare on main page
+    11. Add 'Forgot Something?' tool - sidebar on shopping list
     
 }
 
@@ -21,5 +20,5 @@ Done {
     2. Add functin to delete items on shopping list
     3. Checkboxes on shopping list update listItemComplete in database and strikethrough text
     4. Sort order of shopping list by complete status
-
+    5. Resolve error that occurs when submitting new items to shopping list.  Removed unnessary route on button submit.
 }

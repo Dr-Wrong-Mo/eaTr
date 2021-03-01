@@ -163,6 +163,14 @@ a.brand {
   padding-left: 30px;
 }
 
+/* ABOUT PAGE */
+
+.aboutPage {
+  padding: 15px;
+  text-align: justify;
+  font-size: large;
+}
+
 /*FULL RECIPE*/
 
 .fullRecipeMondule {

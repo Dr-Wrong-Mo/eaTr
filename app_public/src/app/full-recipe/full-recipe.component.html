@@ -1,12 +1,14 @@
 <div class="col-12 recipeFull">
   <div>
     <h1>
-      {{ recipe.recipeName }}
+      <i>{{ recipe.recipeName }}</i>
       <span class="iconRight">
-        <button
-          class="iconRight fas fa-trash"
-          (click)="recipeDeleteById()"
-        ></button>
+        <h4>
+          <button
+            class="iconRight fas fa-trash"
+            (click)="recipeDeleteById()"
+          ></button>
+        </h4>
       </span>
     </h1>
   </div>
