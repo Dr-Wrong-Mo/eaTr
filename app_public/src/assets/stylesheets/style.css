@@ -195,6 +195,14 @@ a.brand {
   padding-right: 15px;
 }
 
+.fa-edit {
+  color: rgb(47, 79, 79);
+}
+
+.fa-edit:hover {
+  color: rgb(82, 148, 148);
+}
+
 .recipeIngredients {
   padding: 15px;
 }
@@ -239,6 +247,12 @@ li {
 
 .iconRight:hover {
   color: rgb(197, 27, 27);
+}
+
+/* EDIT RECIPE */
+
+.editRecipe {
+  padding: 15px;
 }
 
 /* SIDEBAR */

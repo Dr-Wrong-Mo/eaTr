@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { EatrDataService } from '../eatr-data.service';
 import { chefId } from '../../environments/environment.local';
 import { Recipe } from '../chef';

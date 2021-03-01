@@ -13,6 +13,7 @@ import { PageHeaderComponent } from './page-header/page-header.component';
 import { RoutingModule } from './routing/routing.module';
 import { SortChecklistPipe } from './sort-checklist.pipe';
 import { AboutComponent } from './about/about.component';
+import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AboutComponent } from './about/about.component';
     PageHeaderComponent,
     SortChecklistPipe,
     AboutComponent,
+    EditRecipeComponent,
   ],
   imports: [
     BrowserModule,

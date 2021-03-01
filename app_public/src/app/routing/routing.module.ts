@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FullRecipeComponent } from '../full-recipe/full-recipe.component';
 import { MenuBodyComponent } from '../menu-body/menu-body.component';
 import { NewRecipeComponent } from '../new-recipe/new-recipe.component';
+import { EditRecipeComponent } from '../edit-recipe/edit-recipe.component';
 import { ShoppingListComponent } from '../shopping-list/shopping-list.component';
 import { AboutComponent } from '../about/about.component';
 
@@ -22,13 +23,14 @@ const routes: Routes = [
     component: NewRecipeComponent,
   },
   {
+    path: 'chef/:chefId/recipes/:recipeId/edit',
+    component: EditRecipeComponent,
+  },
+  {
     path: 'shoppingList',
     component: ShoppingListComponent,
   },
-  {
-    path: 'newRecipe',
-    component: NewRecipeComponent,
-  },
+
   {
     path: 'chef/:chefId/recipes/:recipeId',
     component: FullRecipeComponent,
