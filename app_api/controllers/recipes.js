@@ -128,9 +128,10 @@ const recipesUpdateOne = (req, res) => {
       message: 'Not found, recipeid is required',
     });
   }
-  Rec.findById(req.params.recipeid)
-    .select('recipes')
-    .exec((err, recipe) => {
+  Chf.findById(req.params.chefid)
+    .select('recipe')
+    .exec((err, chef) => {
+      let recipe = chef.recipe.find(({ id }) => id === req.params.recipeid);
       if (!recipe) {
         return res.status(404).json({
           message: 'recipeid not found',
@@ -140,9 +141,8 @@ const recipesUpdateOne = (req, res) => {
       }
       recipe.recipeName = req.body.recipeName;
       recipe.instructions = req.body.instructions;
-      recipe.image = req.body.image;
       recipe.ingredients = req.body.ingredients;
-      recipe.save((err, Rec) => {
+      chef.save((err, Rec) => {
         if (err) {
           res.status(404).json(err);
         } else {

@@ -41,13 +41,6 @@ export class EditRecipeComponent implements OnInit {
     }
   }
 
-  private resetAndHideRecipeForm(): void {
-    this.editRecipe._id = '';
-    this.editRecipe.recipeName = '';
-    this.editRecipe.instructions = '';
-    this.editRecipe.ingredients = '';
-  }
-
   private getRecipeById(recipeId: string): void {
     this.message = 'Searching for your recipe';
     this.eatrDataService.getRecipeById(recipeId).then((foundrecipe) => {
@@ -58,12 +51,13 @@ export class EditRecipeComponent implements OnInit {
 
   public onRecipeUpdate(): void {
     this.formError = '';
+    const recipeId = this.route.snapshot.paramMap.get('recipeId');
+    this.editRecipe._id = recipeId;
     if (this.formIsValid()) {
       this.eatrDataService
-        .addRecipeByChefId(`${chefId}`, this.editRecipe)
-        .then((recipe: Recipe) => {
-          this.resetAndHideRecipeForm();
-          this.router.navigate(['']);
+        .updateRecipeByChefId(`${chefId}`, this.editRecipe)
+        .then(() => {
+          this.router.navigate([`/chef/${chefId}/recipes/${this.recipe._id}`]);
         });
     } else {
       this.formError = 'All fields required, please try again';

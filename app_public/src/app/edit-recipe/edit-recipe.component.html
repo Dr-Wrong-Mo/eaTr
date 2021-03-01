@@ -14,7 +14,7 @@
           id="recipeName"
           name="recipeName"
           required="required"
-          value="Recipe Name"
+          value="{{ recipe.recipeName }}"
           class="form-control"
           [(ngModel)]="editRecipe.recipeName"
         />
@@ -31,11 +31,10 @@
           required="required"
           id="instructions"
           class="form-control"
+          value="{{ recipe.instructions }}"
           onshow="this.value='';"
           [(ngModel)]="editRecipe.instructions"
-        >
-Fill in your cooking directions here.</textarea
-        >
+        ></textarea>
       </div>
     </div>
     <br />
@@ -48,7 +47,7 @@ Fill in your cooking directions here.</textarea
           id="ingredient"
           name="ingredient"
           required="required"
-          value="Ingredient test"
+          value="{{ recipe?.ingredients }}"
           class="form-control"
           [(ngModel)]="editRecipe.ingredients"
         />

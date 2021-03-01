@@ -1,11 +1,11 @@
 To Do {
 
-    1. Button up the about page
-    2. Function to clear all completed items on shopping list
-    3. Image upload and storage for recipes
-    4. User authentication with password reset options
-    5. Landing page with tutorial for new users
-    6. Add Edit Recipe page
+    1. Fix Edit Recipe page. Preloaded form values must be changed before submitting.
+    2. Button up the about page
+    3. Function to clear all completed items on shopping list
+    4. Image upload and storage for recipes
+    5. User authentication with password reset options
+    6. Landing page with tutorial for new users
     7. Deploy app
     8. Add tags for recipes
     9. Add search function
@@ -21,4 +21,5 @@ Done {
     3. Checkboxes on shopping list update listItemComplete in database and strikethrough text
     4. Sort order of shopping list by complete status
     5. Resolve error that occurs when submitting new items to shopping list.  Removed unnessary route on button submit.
+    6. Add Edit Recipe page
 }

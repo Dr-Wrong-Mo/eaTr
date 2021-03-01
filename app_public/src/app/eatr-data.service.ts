@@ -23,6 +23,18 @@ export class EatrDataService {
       .catch(this.handleError);
   }
 
+  public updateRecipeByChefId(
+    chefId: string,
+    formData: Recipe
+  ): Promise<Recipe> {
+    const url: string = `${this.apiBaseUrl}/chef/${chefId}/recipes/${formData._id}`;
+    return this.http
+      .put(url, formData)
+      .toPromise()
+      .then((response) => response as any)
+      .catch(this.handleError);
+  }
+
   public getRecipes(): Promise<Recipe[]> {
     const url: string = `${this.apiBaseUrl}/chef/${chefId}/recipes`;
     return this.http
@@ -59,6 +71,7 @@ export class EatrDataService {
       .then((response) => response as any)
       .catch(this.handleError);
   }
+
   public getItems(): Promise<Item[]> {
     const url: string = `${this.apiBaseUrl}/chef/${chefId}/shoppingList`;
     return this.http
