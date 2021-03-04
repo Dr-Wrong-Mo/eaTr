@@ -5,6 +5,8 @@ To Do {
     3. Function to clear all completed items on shopping list
     4. Image upload and storage for recipes
     5. User authentication with password reset options
+        API for emailing password reset link
+        https://rapidapi.com/sendgrid/api/sendgrid/pricing
     6. Landing page with tutorial for new users
     7. Deploy app
     8. Add tags for recipes
