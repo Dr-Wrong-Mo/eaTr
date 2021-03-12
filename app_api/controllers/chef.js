@@ -21,28 +21,6 @@ const chefCreate = (req, res) => {
 //Read
 
 const chefGetAll = (req, res) => {
-<<<<<<< HEAD
-  console.log('fetching API method chefGetAll');
-    Chf.find({})
-    .exec((err, chef) => {
-      if (!chef) {
-        return res
-          .status(404)
-          .json({
-            "message": "Chef not found"
-          });
-      } else if (err) {
-        return res
-          .status(404)
-          .json(err);
-      } else {
-        console.log('The chef is', chef);
-        return res
-          .status(200)
-          .json(chef);
-      }
-    });
-=======
   Chf.find({}).exec((err, chef) => {
     if (!chef) {
       return res.status(404).json({
@@ -54,7 +32,6 @@ const chefGetAll = (req, res) => {
       return res.status(200).json(chef);
     }
   });
->>>>>>> da735dd7b20e059328d6168223d4f3af3916cb2c
 };
 
 const chefReadOne = (req, res) => {

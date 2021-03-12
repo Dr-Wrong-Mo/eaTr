@@ -43,44 +43,6 @@ const recipesCreate = (req, res) => {
 
 //Read
 const recipesReadList = (req, res) => {
-<<<<<<< HEAD
-    console.log('fetching API method recipesReadList');
-    Chf
-        .findById(req.params.chefid)
-        .select('recipe')
-        .exec((err, chef) => {
-            if (!chef) {
-                console.log("No chef found");
-                return res
-                    .status(404)
-                    .json({
-                        "message": "chef not found"
-                    });
-            } else if (err) {
-                return res
-                    .status(400)
-                    .json(err);
-            }
-            if (chef.recipe && chef.recipe.length > 0) {
-                if (!chef.recipe) {
-                    return res
-                        .status(404)
-                        .json({
-                            "message": "recipes not found"
-                        });
-                } else {
-                    return res
-                        .status(200)
-                        .json(chef.recipe);
-                }
-            } else {
-                return res
-                    .status(404)
-                    .json({
-                        "message": "No recipes found"
-                    });
-            }
-=======
   Chf.findById(req.params.chefid)
     .select('recipe')
     .exec((err, chef) => {
@@ -98,7 +60,6 @@ const recipesReadList = (req, res) => {
           });
         } else {
           return res.status(200).json(chef.recipe);
->>>>>>> da735dd7b20e059328d6168223d4f3af3916cb2c
         }
       } else {
         return res.status(404).json({
@@ -199,16 +160,6 @@ const recipesDeleteOne = (req, res) => {
       .json({ message: 'Not found, chefid and recipeid are both required' });
   }
 
-<<<<<<< HEAD
-module.exports ={
-    recipesList,
-    recipesReadList,
-    doAddRecipe,
-    recipesCreate,
-    recipesReadOne,
-    recipesUpdateOne,
-    recipesDeleteOne
-=======
   Chf.findById(chefid)
     .select('recipe')
     .exec((err, chef) => {
@@ -247,5 +198,4 @@ module.exports = {
   recipesReadOne,
   recipesUpdateOne,
   recipesDeleteOne,
->>>>>>> da735dd7b20e059328d6168223d4f3af3916cb2c
 };
