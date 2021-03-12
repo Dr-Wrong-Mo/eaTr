@@ -1,23 +1,44 @@
 const mongoose = require('mongoose');
 const readLine = require('readline');
 
-let dbURL = 'mongodb://127.0.0.1/eaTr';
-if (process.env.NODE_ENV === 'production') {
-  dbURL = process.env.DB_HOST || process.env.MONGODB_URI;
-}
+let dbURL = process.env.DB_HOST;
 
-console.log("dbURL is set to", dbURL);
-console.log('NODE_ENV is set to', process.env.NODE_ENV);
+console.log('dbURL is set to', dbURL);
+console.log('NODE_ENV is set to ', process.env.NODE_ENV);
 
 const connect = () => {
-  setTimeout(() => mongoose.connect(dbURL, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true }), 1000);
-}
+  setTimeout(
+    () =>
+      mongoose.connect(dbURL, {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useUnifiedTopology: true,
+      }),
+    1000
+  );
+};
 
 mongoose.connection.on('connected', () => {
-  console.log('Mongoose is connected');
+  let msg = 'Mongoose is';
+  switch (mongoose.connection.readyState) {
+    case 0:
+      console.log(`${msg} disconnected`);
+      break;
+    case 1:
+      console.log(`${msg} connected`);
+      break;
+    case 2:
+      console.log(`${msg} connecting`);
+      break;
+    case 3:
+      console.log(`${msg} disconnecting`);
+      break;
+    default:
+      console.log(`${msg} `);
+  }
 });
 
-mongoose.connection.on('error', err => {
+mongoose.connection.on('error', (err) => {
   console.log('Mongoose connection error: ' + err);
   return connect();
 });
@@ -29,15 +50,15 @@ mongoose.connection.on('disconnected', () => {
 if (process.platform === 'win32') {
   const rl = readLine.createInterface({
     input: process.stdin,
-    output: process.stdout
+    output: process.stdout,
   });
-  rl.on ('SIGINT', () => {
-    process.emit("SIGINT");
+  rl.on('SIGINT', () => {
+    process.emit('SIGINT');
   });
 }
 
 const gracefulShutdown = (msg, callback) => {
-  mongoose.connection.close( () => {
+  mongoose.connection.close(() => {
     console.log(`Mongoose disconnected through ${msg}`);
     callback();
   });
@@ -61,7 +82,7 @@ process.on('SIGTERM', () => {
   });
 });
 
-connect();
-
 require('./recipes');
 require('./shoppingList');
+
+connect();

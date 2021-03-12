@@ -1,22 +1,28 @@
 import { Component, OnInit, Input } from '@angular/core';
+
 import { EatrDataService } from '../eatr-data.service';
-import { FrameworkComponent } from '../framework/framework.component';
+import { chefId } from '../../environments/environment.local';
 import { Item, Chef } from '../chef';
 
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
-  styleUrls: ['./shopping-list.component.css']
+  styleUrls: ['./shopping-list.component.css'],
 })
-
 export class ShoppingListComponent implements OnInit {
-
   @Input() chef: Chef;
 
-  shoppingListItems:any[] = [];
-  public newItem: Item = { listItem: '', listItemComplete: false };
+  constructor(private eatrDataService: EatrDataService) {
+    this.item = new Item();
+  }
 
-  public formError: string; 
+  public item: Item;
+  public items: Item[];
+  public newItem: Item = { _id: '', listItem: '', listItemComplete: false };
+  shoppingListItems: any[] = [];
+
+  public formError: string;
+  public message: string;
 
   private formIsValid(): boolean {
     if (this.newItem.listItem) {
@@ -30,15 +36,20 @@ export class ShoppingListComponent implements OnInit {
     this.newItem.listItem = 'Item added. Add more items.';
   }
 
+  private getItems(): void {
+    this.message = 'Searching for things to eat';
+    this.eatrDataService.getItems().then((foundItems) => {
+      this.items = foundItems;
+      this.message = foundItems.length > 0 ? '' : 'No recipes found';
+    });
+  }
+
   public onItemSubmit(): void {
     this.formError = '';
     if (this.formIsValid()) {
-      this.eatrDataService.addItemByChefId('5fbad08d54734cb04d7ff5bc', this.newItem)
+      this.eatrDataService
+        .addItemByChefId(`${chefId}`, this.newItem)
         .then((item: Item) => {
-          console.log('Item saved', item);
-          let recipes = this.chef.recipes.slice(0);
-          recipes.unshift(item);
-          this.chef.recipes = recipes;
           this.resetItemForm();
           this.getItems();
         });
@@ -46,26 +57,24 @@ export class ShoppingListComponent implements OnInit {
       this.formError = 'All fields required, please try again';
     }
   }
-  
-  constructor(
-    private eatrDataService: EatrDataService,
-    ) { }
 
-    public items: Item[]
+  public updateItem(i): void {
+    this.eatrDataService
+      .updateItem(`${chefId}`, this.items[i]._id, this.items[i])
+      .then(() => {
+        this.resetItemForm();
+        this.getItems();
+      });
+  }
 
-    public message: string;
-    
-    private getItems(): void {
-      this.message = 'Searching for things to eat';
-      this.eatrDataService
-        .getItems()
-        .then(foundItems => {
-          this.items = foundItems;
-          this.message = foundItems.length > 0 ? '' : 'No recipes found';
-        });
-    }
-  
-    ngOnInit() {
-      this.getItems();
-    }
+  public itemDeleteById(i): void {
+    this.eatrDataService
+      .itemDeleteById(`${chefId}`, this.items[i]._id)
+      .then(() => {});
+    this.getItems();
+  }
+
+  ngOnInit() {
+    this.getItems();
+  }
 }

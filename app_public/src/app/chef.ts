@@ -7,18 +7,20 @@
 } */
 
 export class Recipe {
+  _id: string;
   recipeName: string;
   instructions: string;
   ingredients: string;
 }
 
 export class Item {
+  _id: string;
   listItem: string;
-  listItemComplete;
+  listItemComplete: boolean;
 }
 
 export class Chef {
-    _id: string;
-    chefName: string;
-    recipes: any[];
-  }
+  _id: string;
+  chefName: string;
+  recipes: any[];
+}

@@ -1,22 +1,37 @@
 <div class="col-12 recipeFull">
-    <div>
-        <span>
-            <h1>
-                {{ recipe.recipeName }}
-            </h1>
-        </span>
-    </div>
-    <div class="recipeIngredients">
-        <h4>Ingredients</h4>
-        <p>{{recipe?.ingredients}}</p>
-    </div>
-    <div class="recipeInstructions">
-        <h4>Instructions</h4>
-        <p>{{recipe.instructions}}</p>
-        <br>
-        <button type="button" class="btn btn-default float-right"><a routerLink="">Close</a></button>
-        <br>
-        <br>
-        <br>
-    </div>
+  <div>
+    <h1>
+      <i>{{ recipe.recipeName }}</i>
+      <span class="iconRight">
+        <h4>
+          <a
+            routerLink="/chef/5fbe852aafa666c5232a9af6/recipes/{{
+              recipe._id
+            }}/edit"
+          >
+            <i class="far fa-edit"></i>
+          </a>
+          <button
+            class="iconRight fas fa-trash"
+            (click)="recipeDeleteById()"
+          ></button>
+        </h4>
+      </span>
+    </h1>
+  </div>
+  <div class="recipeIngredients">
+    <h4>Ingredients</h4>
+    <p>{{ recipe?.ingredients }}</p>
+  </div>
+  <div class="recipeInstructions">
+    <h4>Instructions</h4>
+    <p>{{ recipe.instructions }}</p>
+    <br />
+    <button type="button" class="btn btn-default float-right">
+      <a routerLink="">Close</a>
+    </button>
+    <br />
+    <br />
+    <br />
+  </div>
 </div>

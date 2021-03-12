@@ -40,7 +40,12 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+environment.local
 
 # System Files
 .DS_Store
 Thumbs.db
+
+app_public/src/environments/environment.local.ts
+src/environments/environment.local.ts
+environment.local.ts

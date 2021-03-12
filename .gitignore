@@ -59,7 +59,4 @@ typings/
 
 # next.js build output
 .next
-
-# Other files
-dbStartup.js
-db startup.js
+app_public/src/environments/environment.local.ts

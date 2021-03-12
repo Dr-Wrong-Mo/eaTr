@@ -1,19 +1,25 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { EatrDataService } from '../eatr-data.service';
+import { chefId } from '../../environments/environment.local';
 import { Chef, Recipe } from '../chef';
 
 @Component({
   selector: 'app-new-recipe',
   templateUrl: './new-recipe.component.html',
-  styleUrls: ['./new-recipe.component.css']
+  styleUrls: ['./new-recipe.component.css'],
 })
 export class NewRecipeComponent implements OnInit {
-
   @Input() chef: Chef;
 
-  public newRecipe: Recipe = { recipeName: '', instructions: '', ingredients: '' };
+  public newRecipe: Recipe = {
+    _id: '',
+    recipeName: '',
+    instructions: '',
+    ingredients: '',
+  };
 
-  public formError: string; 
+  public formError: string;
 
   private formIsValid(): boolean {
     if (this.newRecipe.recipeName && this.newRecipe.instructions) {
@@ -24,6 +30,7 @@ export class NewRecipeComponent implements OnInit {
   }
 
   private resetAndHideRecipeForm(): void {
+    this.newRecipe._id = '';
     this.newRecipe.recipeName = '';
     this.newRecipe.instructions = '';
     this.newRecipe.ingredients = '';
@@ -32,22 +39,21 @@ export class NewRecipeComponent implements OnInit {
   public onRecipeSubmit(): void {
     this.formError = '';
     if (this.formIsValid()) {
-      this.eatrDataService.addRecipeByChefId('5fbad08d54734cb04d7ff5bc',
-        this.newRecipe)
+      this.eatrDataService
+        .addRecipeByChefId(`${chefId}`, this.newRecipe)
         .then((recipe: Recipe) => {
-          let recipes = this.chef.recipes.slice(0);
-          recipes.unshift(recipe);
-          this.chef.recipes = recipes;
           this.resetAndHideRecipeForm();
+          this.router.navigate(['']);
         });
     } else {
       this.formError = 'All fields required, please try again';
     }
   }
 
-  constructor(private eatrDataService: EatrDataService) { }
+  constructor(
+    private eatrDataService: EatrDataService,
+    private router: Router
+  ) {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
