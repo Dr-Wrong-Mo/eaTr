@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EatrDataService } from '../eatr-data.service';
-import { chefId } from '../../environments/environment.local';
+import { AuthenticationService } from '../authentication.service';
 import { Recipe } from '../chef';
 
 @Component({
@@ -18,15 +18,18 @@ export class FullRecipeComponent implements OnInit {
 
   constructor(
     private eatrDataService: EatrDataService,
+    private authenticationService: AuthenticationService,
     private route: ActivatedRoute,
     private router: Router
   ) {
     this.recipe = new Recipe();
   }
 
-  private getRecipeById(recipeId: string): void {
+  public chefId = this.authenticationService.getCurrentUser()._id;
+
+  private getRecipeById(recipeId: string, id: string): void {
     this.message = 'Searching for your recipe';
-    this.eatrDataService.getRecipeById(recipeId).then((foundrecipe) => {
+    this.eatrDataService.getRecipeById(recipeId, id).then((foundrecipe) => {
       this.recipe = foundrecipe.recipe;
       this.message = !foundrecipe ? '' : 'No recipes found';
     });
@@ -35,7 +38,7 @@ export class FullRecipeComponent implements OnInit {
   public recipeDeleteById(): void {
     if (window.confirm('Deleting Recipe')) {
       this.eatrDataService
-        .recipeDeleteById(`${chefId}`, this.recipe._id)
+        .recipeDeleteById(`${this.chefId}`, this.recipe._id)
         .then(() => {
           this.router.navigate(['']);
         });
@@ -44,6 +47,6 @@ export class FullRecipeComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('recipeId');
-    this.getRecipeById(id);
+    this.getRecipeById(id, this.chefId);
   }
 }

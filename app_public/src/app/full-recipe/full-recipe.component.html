@@ -4,11 +4,7 @@
       <i>{{ recipe.recipeName }}</i>
       <span class="iconRight">
         <h4>
-          <a
-            routerLink="/chef/5fbe852aafa666c5232a9af6/recipes/{{
-              recipe._id
-            }}/edit"
-          >
+          <a routerLink="/chef/{{ chefId }}/recipes/{{ recipe._id }}/edit">
             <i class="far fa-edit"></i>
           </a>
           <button

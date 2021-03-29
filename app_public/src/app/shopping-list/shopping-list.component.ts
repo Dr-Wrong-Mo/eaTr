@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { EatrDataService } from '../eatr-data.service';
-import { chefId } from '../../environments/environment.local';
+import { AuthenticationService } from '../authentication.service';
 import { Item, Chef } from '../chef';
 
 @Component({
@@ -12,9 +12,14 @@ import { Item, Chef } from '../chef';
 export class ShoppingListComponent implements OnInit {
   @Input() chef: Chef;
 
-  constructor(private eatrDataService: EatrDataService) {
+  constructor(
+    private eatrDataService: EatrDataService,
+    private authenticationService: AuthenticationService
+  ) {
     this.item = new Item();
   }
+
+  public chefId = this.authenticationService.getCurrentUser()._id;
 
   public item: Item;
   public items: Item[];
@@ -36,9 +41,9 @@ export class ShoppingListComponent implements OnInit {
     this.newItem.listItem = 'Item added. Add more items.';
   }
 
-  private getItems(): void {
+  private getItems(id): void {
     this.message = 'Searching for things to eat';
-    this.eatrDataService.getItems().then((foundItems) => {
+    this.eatrDataService.getItems(id).then((foundItems) => {
       this.items = foundItems;
       this.message = foundItems.length > 0 ? '' : 'No recipes found';
     });
@@ -48,10 +53,10 @@ export class ShoppingListComponent implements OnInit {
     this.formError = '';
     if (this.formIsValid()) {
       this.eatrDataService
-        .addItemByChefId(`${chefId}`, this.newItem)
+        .addItemByChefId(`${this.chefId}`, this.newItem)
         .then((item: Item) => {
           this.resetItemForm();
-          this.getItems();
+          this.getItems(this.chefId);
         });
     } else {
       this.formError = 'All fields required, please try again';
@@ -60,21 +65,21 @@ export class ShoppingListComponent implements OnInit {
 
   public updateItem(i): void {
     this.eatrDataService
-      .updateItem(`${chefId}`, this.items[i]._id, this.items[i])
+      .updateItem(`${this.chefId}`, this.items[i]._id, this.items[i])
       .then(() => {
         this.resetItemForm();
-        this.getItems();
+        this.getItems(this.chefId);
       });
   }
 
   public itemDeleteById(i): void {
     this.eatrDataService
-      .itemDeleteById(`${chefId}`, this.items[i]._id)
+      .itemDeleteById(`${this.chefId}`, this.items[i]._id)
       .then(() => {});
-    this.getItems();
+    this.getItems(this.chefId);
   }
 
   ngOnInit() {
-    this.getItems();
+    this.getItems(this.chefId);
   }
 }

@@ -13,6 +13,7 @@ To Do {
     9. Add search function
     10. Add weather based recommendations - sidebare on main page
     11. Add 'Forgot Something?' tool - sidebar on shopping list
+    12. Login page - delay page redirect until token is in storage
     
 }
 

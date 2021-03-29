@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+
 import { EatrDataService } from '../eatr-data.service';
-import { chefId } from '../../environments/environment.local';
+import { AuthenticationService } from '../authentication.service';
+
 import { Chef, Recipe } from '../chef';
 
 @Component({
@@ -12,6 +14,7 @@ import { Chef, Recipe } from '../chef';
 export class EditRecipeComponent implements OnInit {
   constructor(
     private eatrDataService: EatrDataService,
+    private authenticationService: AuthenticationService,
     private route: ActivatedRoute,
     private router: Router
   ) {
@@ -19,6 +22,8 @@ export class EditRecipeComponent implements OnInit {
   }
 
   //@Input() chef: Chef;
+
+  public chefId = this.authenticationService.getCurrentUser()._id;
 
   public recipe: Recipe;
 
@@ -43,10 +48,12 @@ export class EditRecipeComponent implements OnInit {
 
   private getRecipeById(recipeId: string): void {
     this.message = 'Searching for your recipe';
-    this.eatrDataService.getRecipeById(recipeId).then((foundrecipe) => {
-      this.recipe = foundrecipe.recipe;
-      this.message = !foundrecipe ? '' : 'No recipes found';
-    });
+    this.eatrDataService
+      .getRecipeById(recipeId, this.chefId)
+      .then((foundrecipe) => {
+        this.recipe = foundrecipe.recipe;
+        this.message = !foundrecipe ? '' : 'No recipes found';
+      });
   }
 
   public onRecipeUpdate(): void {
@@ -55,9 +62,11 @@ export class EditRecipeComponent implements OnInit {
     this.editRecipe._id = recipeId;
     if (this.formIsValid()) {
       this.eatrDataService
-        .updateRecipeByChefId(`${chefId}`, this.editRecipe)
+        .updateRecipeByChefId(`${this.chefId}`, this.editRecipe)
         .then(() => {
-          this.router.navigate([`/chef/${chefId}/recipes/${this.recipe._id}`]);
+          this.router.navigate([
+            `/chef/${this.chefId}/recipes/${this.recipe._id}`,
+          ]);
         });
     } else {
       this.formError = 'All fields required, please try again';
