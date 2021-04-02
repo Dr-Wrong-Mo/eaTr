@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -14,6 +14,8 @@ import { RoutingModule } from './routing/routing.module';
 import { SortChecklistPipe } from './sort-checklist.pipe';
 import { AboutComponent } from './about/about.component';
 import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
     SortChecklistPipe,
     AboutComponent,
     EditRecipeComponent,
+    RegisterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,5 +41,6 @@ import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
   ],
   providers: [],
   bootstrap: [FrameworkComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

@@ -5,22 +5,30 @@
   font-weight: 100;
 }
 
+body {
+  color: rgb(94, 93, 93);
+}
+/* .router {
+  padding: 20px;
+} */
+
 /*HEADER*/
 
-.titleName {
-  font-size: 3em;
-  vertical-align: text-bottom;
-  padding-right: 15px;
-  padding-left: 15px;
-  padding-top: 15px;
-  padding-bottom: 0px;
+#titleBar {
+  padding: 10px 20px;
+}
+
+#titleName {
+  font-size: 2.5em;
+}
+
+#chefName {
+  font-size: 1.5em;
   border-right-color: black;
 }
 
-.topRowLine {
-  background-color: #9edb51;
-  height: 1px;
-  margin: 0px;
+.fa-chevron-down {
+  font-size: 1rem;
 }
 
 a.brand {
@@ -36,44 +44,37 @@ a.brand {
   float: right;
   text-align: right;
   font-size: 1.5em;
-  padding-right: 15px;
-  padding-left: 0px;
-  padding-top: 15px;
-  padding-bottom: 0px;
+  padding: 15px 15px 0px 0px;
 }
 
-.fa-info-circle {
-  color: #b363a4;
-}
+/* REGISTER / LOGIN */
 
-:hover.fa-info-circle {
-  color: #a7e3f2;
-}
-
-.fa-plus-circle {
-  color: #b363a4;
-}
-
-:hover.fa-plus-circle {
-  color: #a7e3f2;
-}
-
-.fa-tasks {
-  color: #b363a4;
-}
-
-:hover.fa-tasks {
-  color: #a7e3f2;
+.register,
+.login {
+  padding-top: 20px;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(73, 74, 78, 0.5),
+      rgba(73, 74, 78, 0.5)
+    ),
+    url(https://source.unsplash.com/sil2Hx4iupI);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: #fff;
 }
 
 /*MAIN BODY*/
 
 .router {
-  align-content: center;
+  padding-top: 20px;
 }
-.menuBodyModule {
+/* .menuBodyModule {
   padding: 0px;
-}
+} */
 
 .row {
   padding-right: 0px;
@@ -159,14 +160,14 @@ a.brand {
   border-radius: 0px 0px 7px 0px;
 }
 
-.menuBody {
+/* .menuBody {
   padding-left: 30px;
-}
+} */
 
 /* ABOUT PAGE */
 
 .aboutPage {
-  padding: 15px;
+  /* padding: 15px; */
   text-align: justify;
   font-size: large;
 }
@@ -180,14 +181,6 @@ a.brand {
 .menuBodySpan {
   padding: 0px;
   margin: 0px;
-}
-
-.recipeFull {
-  background-color: #a7e3f2;
-  padding: 25px;
-  color: rgb(47, 79, 79);
-  margin: 0px;
-  width: 100%;
 }
 
 .recipeName {
@@ -218,8 +211,13 @@ a.brand {
   padding-top: 15px;
 }
 
+.listItem {
+  vertical-align: top;
+}
+
 .fa-times {
   float: right;
+  vertical-align: text-top;
   color: rgb(47, 79, 79);
   font-size: large;
   margin: 0px;
@@ -239,7 +237,7 @@ li {
 }
 
 .iconRight {
-  float: right;
+  /* float: right; */
   color: rgb(236, 44, 44);
   background-color: transparent;
   border: none;
@@ -251,9 +249,9 @@ li {
 
 /* EDIT RECIPE */
 
-.editRecipe {
+/* .editRecipe {
   padding: 15px;
-}
+} */
 
 /* SIDEBAR */
 
@@ -282,16 +280,19 @@ a.newRecipeButton {
   text-decoration: none;
 }
 
-.newRecipe {
+/* .newRecipe {
   padding: 15px;
-}
+} */
 
 /* Shopping List */
 
 .shoppingList {
-  padding: 15px;
+  padding: 20px 15px;
+}
+*/ input[type="checkbox"]:checked + label.strikethrough {
+  text-decoration: line-through;
 }
 
-input[type="checkbox"]:checked + label.strikethrough {
+.strikethrough {
   text-decoration: line-through;
 }

@@ -1,5 +1,6 @@
 To Do {
 
+    0. Redesign shopping list as a table with banded rows (bootstrap)
     1. Fix Edit Recipe page. Preloaded form values must be changed before submitting.
     2. Button up the about page
     3. Function to clear all completed items on shopping list
@@ -13,6 +14,7 @@ To Do {
     9. Add search function
     10. Add weather based recommendations - sidebare on main page
     11. Add 'Forgot Something?' tool - sidebar on shopping list
+    12. Login page - delay page redirect until token is in storage
     
 }
 

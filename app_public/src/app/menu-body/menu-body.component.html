@@ -1,4 +1,4 @@
-<div class="menuBodySpan">
+<div class="menuBodySpan router">
   <div class="col-12 menuBody row">
     <div class="recipeIcon" *ngFor="let recipe of recipes">
       <div class="recipeThumb">
@@ -15,8 +15,7 @@
           </form>
         </span>
         <span class="recipeExpand">
-          <a
-            routerLink="/chef/5fbe852aafa666c5232a9af6/recipes/{{ recipe._id }}"
+          <a routerLink="/chef/{{ chefId }}/recipes/{{ recipe._id }}"
             ><i class="fas fa-expand-arrows-alt"></i
           ></a>
         </span>

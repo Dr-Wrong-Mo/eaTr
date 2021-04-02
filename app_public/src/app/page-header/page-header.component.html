@@ -1,5 +1,5 @@
-<div class="titleBar">
-  <span class="titleName">
+<div id="titleBar" class="sticky-top">
+  <span id="titleName">
     <a
       routerLink="newRecipe"
       routerLinkActive="active"
@@ -8,16 +8,30 @@
       >eaTr</a
     >
   </span>
+  &nbsp;
+  <span id="chefName" *ngIf="isLoggedIn()">
+    {{ chefName }}
+    <button
+      (click)="doLogout()"
+      style="border: 0; background: none"
+      *ngIf="isLoggedIn()"
+    >
+      <div class="shoelaceIcons">
+        <a routerLink="/login" routerLinkActive="active"
+          ><sl-icon name="box-arrow-left" class="shoelaceIcons"></sl-icon
+        ></a>
+      </div>
+    </button>
+  </span>
   <span class="navIcons">
     <a routerLink="about" routerLinkActive="active"
-      ><i class="fas fa-info-circle"></i></a
+      ><sl-icon name="info-circle" class="shoelaceIcons"></sl-icon></a
     >&nbsp;
-    <a routerLink="newRecipe" routerLinkActive="active"
-      ><i class="fas fa-plus-circle"></i></a
+    <a routerLink="newRecipe" routerLinkActive="active" *ngIf="isLoggedIn()"
+      ><sl-icon name="plus-circle" class="shoelaceIcons"></sl-icon></a
     >&nbsp;
-    <a routerLink="shoppingList" routerLinkActive="active"
-      ><i class="fas fa-tasks"></i
+    <a routerLink="shoppingList" routerLinkActive="active" *ngIf="isLoggedIn()"
+      ><sl-icon name="list-check" class="shoelaceIcons"></sl-icon
     ></a>
   </span>
 </div>
-<hr class="topRowLine" />

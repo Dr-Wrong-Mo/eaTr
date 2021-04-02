@@ -1,22 +1,7 @@
-<div class="col-12 recipeFull">
+<div class="router darkfont col-12 col-sm-8 offset-sm-2">
   <div>
     <h1>
       <i>{{ recipe.recipeName }}</i>
-      <span class="iconRight">
-        <h4>
-          <a
-            routerLink="/chef/5fbe852aafa666c5232a9af6/recipes/{{
-              recipe._id
-            }}/edit"
-          >
-            <i class="far fa-edit"></i>
-          </a>
-          <button
-            class="iconRight fas fa-trash"
-            (click)="recipeDeleteById()"
-          ></button>
-        </h4>
-      </span>
     </h1>
   </div>
   <div class="recipeIngredients">
@@ -27,9 +12,31 @@
     <h4>Instructions</h4>
     <p>{{ recipe.instructions }}</p>
     <br />
-    <button type="button" class="btn btn-default float-right">
-      <a routerLink="">Close</a>
-    </button>
+    <a
+      routerLink=""
+      class="btn btn-outline-secondary float-end buttonMargin"
+      role="button"
+    >
+      Close
+    </a>
+
+    &nbsp;
+    <a
+      routerLink="/chef/{{ chefId }}/recipes/{{ recipe._id }}/edit"
+      class="btn btn-outline-info float-end buttonMargin"
+      role="button"
+    >
+      Edit
+    </a>
+    <a
+      routerLink=""
+      class="btn btn-outline-danger float-end buttonMargin"
+      role="button"
+      (click)="recipeDeleteById()"
+    >
+      Delete
+    </a>
+
     <br />
     <br />
     <br />

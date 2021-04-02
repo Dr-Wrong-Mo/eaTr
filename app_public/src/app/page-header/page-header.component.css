@@ -1,0 +1,22 @@
+#titleBar {
+  background-color: #9edb51;
+  color: #fff;
+  top: 0px;
+  z-index: 1;
+}
+
+a {
+  color: #fff;
+}
+
+.shoelaceIcons {
+  color: #fff;
+}
+
+:hover.shoelaceIcons {
+  color: #a7e3f2;
+}
+
+:focus.shoelaceIcons {
+  color: #a7e3f2;
+}

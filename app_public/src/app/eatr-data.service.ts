@@ -1,23 +1,63 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Recipe, Item, Chef } from './chef';
 import { environment } from '../environments/environment';
-import { chefId } from '../environments/environment.local';
-import { Observable } from 'rxjs';
+
+import { Recipe, Item, Chef } from './chef';
+import { Authresponse } from './authresponse';
+import { BROWSER_STORAGE } from './storage';
 
 @Injectable({
   providedIn: 'root',
 })
 export class EatrDataService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    @Inject(BROWSER_STORAGE) private storage: Storage
+  ) {}
 
   private apiBaseUrl = environment.apiBaseUrl;
+
+  public httpOptions = {
+    headers: new HttpHeaders({
+      Authorization: `Bearer ${this.storage.getItem('eatr-token')}`,
+    }),
+  };
+
+  //User Authentication Methods
+
+  public login(chef: Chef): Promise<Authresponse> {
+    return this.makeAuthApiCall('login', chef);
+  }
+
+  public register(chef: Chef): Promise<Authresponse> {
+    return this.makeAuthApiCall('register', chef);
+  }
+
+  private makeAuthApiCall(urlPath: string, chef: Chef): Promise<Authresponse> {
+    const url: string = `${this.apiBaseUrl}/${urlPath}`;
+
+    return this.http
+      .post(url, chef)
+      .toPromise()
+      .then((response) => response as Authresponse)
+      .catch(this.handleError);
+  }
+
+  //Chef Methods
+  public getChef(chefId: string): Promise<Chef> {
+    const url: string = `${this.apiBaseUrl}/chef/${chefId}`;
+    return this.http
+      .get(url, this.httpOptions)
+      .toPromise()
+      .then((response) => response as any)
+      .catch(this.handleError);
+  }
 
   //Recipes Methods
   public addRecipeByChefId(chefId: string, formData: Recipe): Promise<Recipe> {
     const url: string = `${this.apiBaseUrl}/chef/${chefId}/recipes`;
     return this.http
-      .post(url, formData)
+      .post(url, formData, this.httpOptions)
       .toPromise()
       .then((response) => response as any)
       .catch(this.handleError);
@@ -29,25 +69,25 @@ export class EatrDataService {
   ): Promise<Recipe> {
     const url: string = `${this.apiBaseUrl}/chef/${chefId}/recipes/${formData._id}`;
     return this.http
-      .put(url, formData)
+      .put(url, formData, this.httpOptions)
       .toPromise()
       .then((response) => response as any)
       .catch(this.handleError);
   }
 
-  public getRecipes(): Promise<Recipe[]> {
+  public getRecipes(chefId: string): Promise<Recipe[]> {
     const url: string = `${this.apiBaseUrl}/chef/${chefId}/recipes`;
     return this.http
-      .get(url)
+      .get(url, this.httpOptions)
       .toPromise()
       .then((response) => response as Recipe[])
       .catch(this.handleError);
   }
 
-  public getRecipeById(recipeId: string) {
+  public getRecipeById(recipeId: string, chefId: string) {
     const url: string = `${this.apiBaseUrl}/chef/${chefId}/recipes/${recipeId}`;
     return this.http
-      .get(url)
+      .get(url, this.httpOptions)
       .toPromise()
       .then((response) => response)
       .catch(this.handleError);
@@ -56,7 +96,7 @@ export class EatrDataService {
   public recipeDeleteById(chefId: string, recipeId: string) {
     const url: string = `${this.apiBaseUrl}/chef/${chefId}/recipes/${recipeId}`;
     return this.http
-      .delete(url)
+      .delete(url, this.httpOptions)
       .toPromise()
       .then((response) => response)
       .catch(this.handleError);
@@ -66,16 +106,16 @@ export class EatrDataService {
   public addItemByChefId(chefId: string, formData: Item): Promise<Item> {
     const url: string = `${this.apiBaseUrl}/chef/${chefId}/shoppingList`;
     return this.http
-      .post(url, formData)
+      .post(url, formData, this.httpOptions)
       .toPromise()
       .then((response) => response as any)
       .catch(this.handleError);
   }
 
-  public getItems(): Promise<Item[]> {
+  public getItems(chefId: string): Promise<Item[]> {
     const url: string = `${this.apiBaseUrl}/chef/${chefId}/shoppingList`;
     return this.http
-      .get(url)
+      .get(url, this.httpOptions)
       .toPromise()
       .then((response) => response as Item[])
       .catch(this.handleError);
@@ -89,7 +129,7 @@ export class EatrDataService {
     const url: string = `${this.apiBaseUrl}/chef/${chefId}/item/${itemId}`;
     formData.listItemComplete = !formData.listItemComplete;
     return this.http
-      .put(url, formData)
+      .put(url, formData, this.httpOptions)
       .toPromise()
       .then((response) => response as Item[])
       .catch(this.handleError);
@@ -98,7 +138,7 @@ export class EatrDataService {
   public itemDeleteById(chefId: string, itemId: string) {
     const url: string = `${this.apiBaseUrl}/chef/${chefId}/item/${itemId}`;
     return this.http
-      .delete(url)
+      .delete(url, this.httpOptions)
       .toPromise()
       .then((response) => response)
       .catch(this.handleError);

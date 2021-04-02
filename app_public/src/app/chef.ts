@@ -22,5 +22,6 @@ export class Item {
 export class Chef {
   _id: string;
   chefName: string;
+  email: String;
   recipes: any[];
 }

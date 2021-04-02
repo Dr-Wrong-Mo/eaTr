@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { EatrDataService } from '../eatr-data.service';
-import { chefId } from '../../environments/environment.local';
+import { AuthenticationService } from '../authentication.service';
 import { Chef, Recipe } from '../chef';
 
 @Component({
@@ -10,6 +10,22 @@ import { Chef, Recipe } from '../chef';
   styleUrls: ['./new-recipe.component.css'],
 })
 export class NewRecipeComponent implements OnInit {
+  constructor(
+    private eatrDataService: EatrDataService,
+    private authenticationService: AuthenticationService,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    if (!this.authenticationService.isLoggedIn()) {
+      this.router.navigateByUrl('/login');
+    } else {
+      this.chefId = this.authenticationService.getCurrentUser()._id;
+    }
+  }
+
+  public chefId = '';
+
   @Input() chef: Chef;
 
   public newRecipe: Recipe = {
@@ -40,7 +56,7 @@ export class NewRecipeComponent implements OnInit {
     this.formError = '';
     if (this.formIsValid()) {
       this.eatrDataService
-        .addRecipeByChefId(`${chefId}`, this.newRecipe)
+        .addRecipeByChefId(this.chefId, this.newRecipe)
         .then((recipe: Recipe) => {
           this.resetAndHideRecipeForm();
           this.router.navigate(['']);
@@ -49,11 +65,4 @@ export class NewRecipeComponent implements OnInit {
       this.formError = 'All fields required, please try again';
     }
   }
-
-  constructor(
-    private eatrDataService: EatrDataService,
-    private router: Router
-  ) {}
-
-  ngOnInit(): void {}
 }

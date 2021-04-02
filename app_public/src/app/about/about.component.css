@@ -1,0 +1,15 @@
+@media (min-width: 576px) {
+  .aboutPage {
+    background: url(https://source.unsplash.com/08bOYnH_r_E);
+    background-repeat: no-repeat;
+
+    background-attachment: fixed;
+    background-size: 100% auto;
+  }
+}
+
+.wrapper {
+  padding: 20px;
+  color: rgb(94, 93, 93);
+  font-size: x-large;
+}
