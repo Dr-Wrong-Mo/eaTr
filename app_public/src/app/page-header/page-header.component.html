@@ -9,20 +9,21 @@
     >
   </span>
   &nbsp;
-  <span id="chefName" *ngIf="isLoggedIn()">
+  <button
+    (click)="doLogout()"
+    style="border: 0; background: none"
+    *ngIf="isLoggedIn()"
+  >
+    <a routerLink="/login" routerLinkActive="active"
+      ><sl-icon name="box-arrow-left" class="shoelaceIcons"></sl-icon
+    ></a>
+  </button>
+  <!-- <span id="chefName" *ngIf="isLoggedIn()">
     {{ chefName }}
-    <button
-      (click)="doLogout()"
-      style="border: 0; background: none"
-      *ngIf="isLoggedIn()"
-    >
+    
       <div class="shoelaceIcons">
-        <a routerLink="/login" routerLinkActive="active"
-          ><sl-icon name="box-arrow-left" class="shoelaceIcons"></sl-icon
-        ></a>
-      </div>
-    </button>
-  </span>
+        </div>
+  </span> -->
   <span class="navIcons">
     <a routerLink="about" routerLinkActive="active"
       ><sl-icon name="info-circle" class="shoelaceIcons"></sl-icon></a
