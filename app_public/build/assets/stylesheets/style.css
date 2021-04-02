@@ -1,0 +1,298 @@
+@import url("//fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap");
+
+* {
+  font-family: "roboto";
+  font-weight: 100;
+}
+
+body {
+  color: rgb(94, 93, 93);
+}
+/* .router {
+  padding: 20px;
+} */
+
+/*HEADER*/
+
+#titleBar {
+  padding: 10px 20px;
+}
+
+#titleName {
+  font-size: 2.5em;
+}
+
+#chefName {
+  font-size: 1.5em;
+  border-right-color: black;
+}
+
+.fa-chevron-down {
+  font-size: 1rem;
+}
+
+a.brand {
+  color: #9edb51;
+  text-decoration: none;
+}
+
+:hover.brand {
+  color: #a7e3f2;
+}
+
+.navIcons {
+  float: right;
+  text-align: right;
+  font-size: 1.5em;
+  padding: 15px 15px 0px 0px;
+}
+
+/* REGISTER / LOGIN */
+
+.register,
+.login {
+  padding-top: 20px;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(73, 74, 78, 0.5),
+      rgba(73, 74, 78, 0.5)
+    ),
+    url(https://source.unsplash.com/sil2Hx4iupI);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: #fff;
+}
+
+/*MAIN BODY*/
+
+.router {
+  padding-top: 20px;
+}
+/* .menuBodyModule {
+  padding: 0px;
+} */
+
+.row {
+  padding-right: 0px;
+}
+
+.recipeMenu {
+  margin: 0px;
+}
+
+.recipeIcon {
+  align-items: center;
+  width: 250px;
+  height: 75px;
+  padding: 0px;
+  margin: 20px;
+  border-color: black;
+  border-width: 2px;
+  background-color: #a7e3f2;
+  border-radius: 7px 7px 0px 0px;
+}
+
+.recipeThumb {
+  width: 250px;
+  height: 75px;
+  padding: 20px;
+  margin: 0px;
+  text-align: center;
+  color: white;
+}
+
+.thumb {
+  width: 250px;
+  height: 75px;
+  border-radius: 7px 0px 0px 7px;
+}
+
+.recipeIconActions {
+  width: 250px;
+  padding: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 20px;
+  /* float: right; */
+}
+
+.addToList {
+  background-color: #72a339;
+  font-size: 1em;
+  text-align: center;
+  width: 125px;
+  height: 35px;
+  padding-left: 15px;
+  padding-top: 5px;
+  border-radius: 0px 0px 0px 7px;
+  margin-bottom: 20px;
+}
+
+.fa-plus-square {
+  color: white;
+}
+
+:hover.fa-plus-square {
+  color: #d4cb4a;
+}
+
+.fa-expand-arrows-alt {
+  color: white;
+}
+
+:hover.fa-expand-arrows-alt {
+  color: #72a339;
+}
+
+.recipeExpand {
+  background-color: #d4cb4a;
+  color: #fff;
+  font-size: 1em;
+  text-align: center;
+  width: 125px;
+  height: 35px;
+  padding-top: 5px;
+  padding-left: 15px;
+  border-radius: 0px 0px 7px 0px;
+}
+
+/* .menuBody {
+  padding-left: 30px;
+} */
+
+/* ABOUT PAGE */
+
+.aboutPage {
+  /* padding: 15px; */
+  text-align: justify;
+  font-size: large;
+}
+
+/*FULL RECIPE*/
+
+.fullRecipeMondule {
+  float: top;
+}
+
+.menuBodySpan {
+  padding: 0px;
+  margin: 0px;
+}
+
+.recipeName {
+  text-align: center;
+  padding-right: 15px;
+}
+
+.fa-edit {
+  color: rgb(47, 79, 79);
+}
+
+.fa-edit:hover {
+  color: rgb(82, 148, 148);
+}
+
+.recipeIngredients {
+  padding: 15px;
+}
+
+.recipeInstructions {
+  padding: 15px;
+}
+
+.closeFullRecipe {
+  background-color: #a7e3f2;
+  text-align: center;
+  margin: 0px;
+  padding-top: 15px;
+}
+
+.listItem {
+  vertical-align: top;
+}
+
+.fa-times {
+  float: right;
+  vertical-align: text-top;
+  color: rgb(47, 79, 79);
+  font-size: large;
+  margin: 0px;
+}
+
+:hover.fa-times {
+  color: white;
+}
+
+.fullImage {
+  width: 100%;
+}
+
+li {
+  font-weight: 300;
+  color: rgb(47, 79, 79);
+}
+
+.iconRight {
+  /* float: right; */
+  color: rgb(236, 44, 44);
+  background-color: transparent;
+  border: none;
+}
+
+.iconRight:hover {
+  color: rgb(197, 27, 27);
+}
+
+/* EDIT RECIPE */
+
+/* .editRecipe {
+  padding: 15px;
+} */
+
+/* SIDEBAR */
+
+.sidebar {
+  padding-top: 15px;
+  text-align: center;
+  float: right;
+  background-color: lightgray;
+  height: inherit;
+}
+
+/* New Recipe */
+
+.ingredientForm {
+  margin: 15px;
+  align-content: left;
+}
+
+a.newRecipeButton {
+  color: white;
+  text-decoration: none;
+}
+
+:hover.newRecipeButton {
+  color: black;
+  text-decoration: none;
+}
+
+/* .newRecipe {
+  padding: 15px;
+} */
+
+/* Shopping List */
+
+.shoppingList {
+  padding: 20px 15px;
+}
+*/ input[type="checkbox"]:checked + label.strikethrough {
+  text-decoration: line-through;
+}
+
+.strikethrough {
+  text-decoration: line-through;
+}
