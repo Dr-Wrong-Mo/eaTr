@@ -1,20 +1,17 @@
 To Do {
 
-    0. Redesign shopping list as a table with banded rows (bootstrap)
     1. Fix Edit Recipe page. Preloaded form values must be changed before submitting.
-    2. Button up the about page
-    3. Function to clear all completed items on shopping list
-    4. Image upload and storage for recipes
-    5. User authentication with password reset options
+    2. Function to clear all completed items on shopping list
+    3. Image upload and storage for recipes
+    4. Password reset options
         API for emailing password reset link
         https://rapidapi.com/sendgrid/api/sendgrid/pricing
-    6. Landing page with tutorial for new users
-    7. Deploy app
-    8. Add tags for recipes
-    9. Add search function
-    10. Add weather based recommendations - sidebare on main page
-    11. Add 'Forgot Something?' tool - sidebar on shopping list
-    12. Login page - delay page redirect until token is in storage
+    5. Landing page with tutorial for new users
+    6. Add tags for recipes
+    7. Add search function
+    8. Add weather based recommendations - sidebare on main page
+    9. Add 'Forgot Something?' tool - sidebar on shopping list
+    
     
 }
 
@@ -26,4 +23,9 @@ Done {
     4. Sort order of shopping list by complete status
     5. Resolve error that occurs when submitting new items to shopping list.  Removed unnessary route on button submit.
     6. Add Edit Recipe page
+    7. Deploy app
+    8. Redesign shopping list as a table with banded rows (bootstrap)
+    9. Button up the about page
+    10. User authentication
+    11. Login page - delay page redirect until token is in storage. Removed bad chunck of code that was blocking
 }

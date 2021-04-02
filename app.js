@@ -9,8 +9,6 @@ const passport = require('passport');
 require('./app_api/models/db');
 require('./app_api/config/passport');
 
-//const indexRouter = require('../app_server/routes/index');
-//const apiRouter = require('../eaTr/app_api/routes/index');
 const apiRouter = require('./app_api/routes/index');
 
 const app = express();
