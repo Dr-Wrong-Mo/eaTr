@@ -1,10 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { EatrDataService } from '../eatr-data.service';
 import { AuthenticationService } from '../authentication.service';
 
-import { Chef, Recipe } from '../chef';
+import { Recipe } from '../chef';
 
 @Component({
   selector: 'app-edit-recipe',
@@ -21,10 +21,7 @@ export class EditRecipeComponent implements OnInit {
     this.recipe = new Recipe();
   }
 
-  //@Input() chef: Chef;
-
-  public chefId = this.authenticationService.getCurrentUser()._id;
-
+  public chefId = '';
   public recipe: Recipe;
 
   public message: string;
@@ -74,7 +71,12 @@ export class EditRecipeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('recipeId');
-    this.getRecipeById(id);
+    if (!this.authenticationService.isLoggedIn()) {
+      this.router.navigateByUrl('/login');
+    } else {
+      this.chefId = this.authenticationService.getCurrentUser()._id;
+      const id = this.route.snapshot.paramMap.get('recipeId');
+      this.getRecipeById(id);
+    }
   }
 }

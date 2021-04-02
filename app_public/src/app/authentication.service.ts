@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { BROWSER_STORAGE } from './storage';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Chef } from './chef';
 import { Authresponse } from './authresponse';
 import { EatrDataService } from './eatr-data.service';
@@ -10,8 +11,15 @@ import { EatrDataService } from './eatr-data.service';
 export class AuthenticationService {
   constructor(
     @Inject(BROWSER_STORAGE) private storage: Storage,
-    private eatrDataService: EatrDataService
+    private eatrDataService: EatrDataService,
+    private http: HttpClient
   ) {}
+
+  public httpOptions = {
+    headers: new HttpHeaders({
+      Authorization: `Bearer ${this.storage.getItem('eatr-token')}`,
+    }),
+  };
 
   public getToken(): string {
     return this.storage.getItem('eatr-token');

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { EatrDataService } from '../eatr-data.service';
 import { AuthenticationService } from '../authentication.service';
@@ -11,7 +12,8 @@ import { AuthenticationService } from '../authentication.service';
 export class PageHeaderComponent implements OnInit {
   constructor(
     private eatrDataService: EatrDataService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -31,5 +33,15 @@ export class PageHeaderComponent implements OnInit {
       this.chefName = foundChef.chefName;
       this.message = chefId ? '' : 'No chef found';
     });
+  }
+
+  public isLoggedIn(): boolean {
+    return this.authenticationService.isLoggedIn();
+  }
+
+  public doLogout(): void {
+    this.chefName = '';
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
   }
 }

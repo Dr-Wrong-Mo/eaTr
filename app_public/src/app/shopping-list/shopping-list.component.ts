@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { EatrDataService } from '../eatr-data.service';
 import { AuthenticationService } from '../authentication.service';
@@ -14,12 +15,13 @@ export class ShoppingListComponent implements OnInit {
 
   constructor(
     private eatrDataService: EatrDataService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private router: Router
   ) {
     this.item = new Item();
   }
 
-  public chefId = this.authenticationService.getCurrentUser()._id;
+  public chefId = '';
 
   public item: Item;
   public items: Item[];
@@ -38,14 +40,17 @@ export class ShoppingListComponent implements OnInit {
   }
 
   private resetItemForm(): void {
-    this.newItem.listItem = 'Item added. Add more items.';
+    this.newItem.listItem = '';
+    let placeholder = (<HTMLInputElement>(
+      document.getElementsByName('listItem')[0]
+    )).placeholder;
+    placeholder = 'Add more items.';
   }
 
   private getItems(id): void {
-    this.message = 'Searching for things to eat';
     this.eatrDataService.getItems(id).then((foundItems) => {
       this.items = foundItems;
-      this.message = foundItems.length > 0 ? '' : 'No recipes found';
+      this.message = foundItems.length > 0 ? '' : 'No items found';
     });
   }
 
@@ -80,6 +85,11 @@ export class ShoppingListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getItems(this.chefId);
+    if (!this.authenticationService.isLoggedIn()) {
+      this.router.navigateByUrl('/login');
+    } else {
+      this.chefId = this.authenticationService.getCurrentUser()._id;
+      this.getItems(this.chefId);
+    }
   }
 }

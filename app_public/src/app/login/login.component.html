@@ -1,37 +1,49 @@
-<div class="row">
-  <div class="col-12 col-md-8">
+<div class="login col-12">
+  <div class="col-10 offset-1 col-sm-6 offset-sm-3">
     <p class="lead">
-      Not a member? Please <a routerLink="/register">register</a> first
+      Not a member?<br />Please <a routerLink="/register">register</a> first
     </p>
     <form (submit)="onLoginSubmit()">
       <div role="alert" *ngIf="formError" class="alert alert-danger">
         {{ formError }}
       </div>
       <div class="form-group">
-        <label for="email">Email</label>
-        <input
-          type="email"
-          class="form-control"
-          id="email"
-          name="email"
-          placeholder="Enter email address"
-          [(ngModel)]="credentials.email"
-        />
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" for="email" id="basic-addon1"
+              >@</span
+            >
+          </div>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            placeholder="Enter email address"
+            [(ngModel)]="credentials.email"
+            aria-describedby="basic-addon1"
+          />
+        </div>
       </div>
       <div class="form-group">
-        <label for="password">Password</label>
         <input
           type="password"
           class="form-control"
           id="password"
           name="password"
-          placeholder="e.g 12+ alphanumerics"
+          placeholder="Password e.g 12+ alphanumerics"
           [(ngModel)]="credentials.password"
         />
       </div>
-      <button type="submit" role="button" class="btn btn-primary">
+      <br />
+      <button
+        type="submit"
+        role="button"
+        class="btn btn-outline-warning float-end"
+      >
         Sign In!
       </button>
     </form>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
   </div>
 </div>

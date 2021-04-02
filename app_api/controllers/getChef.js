@@ -2,11 +2,6 @@ const mongoose = require('mongoose');
 const Chf = mongoose.model('Chefs');
 
 const getChef = (req, res, callback) => {
-  if (req.payload._id !== req.params.chefid) {
-    return res
-      .status(400)
-      .json({ message: 'Chef Id does not match the token Chef Id' });
-  }
   if (req.payload && req.payload.email) {
     Chf.findOne({ email: req.payload.email }).exec((err, chef) => {
       if (!chef) {

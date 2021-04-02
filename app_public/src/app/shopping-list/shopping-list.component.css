@@ -1,0 +1,30 @@
+.addListItem {
+  padding-left: 10px;
+  border: none;
+  background-color: transparent;
+  margin: 0;
+  width: 100%;
+}
+
+:hover.addListItem {
+  background-color: #f5f5f5;
+}
+
+:focus.addListItem {
+  background-color: #f5f5f5;
+  outline: none;
+}
+
+.addListItemBtn {
+  border: none;
+  background-color: transparent;
+  color: #9edb51;
+}
+
+:hover.addListItemBtn {
+  color: #88be44;
+}
+
+.noPadding {
+  padding: 0;
+}

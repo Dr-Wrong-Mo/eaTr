@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
-//import { HistoryService } from '../history.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +10,7 @@ import { AuthenticationService } from '../authentication.service';
 export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
-    private authenticationService: AuthenticationService //private historyService: HistoryService
+    private authenticationService: AuthenticationService
   ) {}
 
   public formError: string = '';
@@ -36,12 +35,16 @@ export class LoginComponent implements OnInit {
   private doLogin(): void {
     this.authenticationService
       .login(this.credentials)
-      //delay page redirect until token is in storage
       .then(() => this.router.navigateByUrl('/'))
       .catch((message) => {
+        console.log(message);
         this.formError = message;
       });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.authenticationService.isLoggedIn()) {
+      this.router.navigateByUrl('');
+    }
+  }
 }

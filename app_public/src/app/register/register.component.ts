@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
-//import { HistoryService } from '../history.service';
 
 @Component({
   selector: 'app-register',
@@ -16,6 +15,7 @@ export class RegisterComponent implements OnInit {
     chefName: '',
     email: '',
     password: '',
+    password2: '',
     recipes: [],
   };
 
@@ -27,23 +27,31 @@ export class RegisterComponent implements OnInit {
       !this.credentials.password
     ) {
       this.formError = 'All fields are required, please try again';
+    } else if (this.credentials.password !== this.credentials.password2) {
+      this.formError = 'Passwords do not match, please try again';
     } else {
       this.doRegister();
     }
   }
 
   private doRegister(): void {
-    this.authenticationService.register(this.credentials).then(() =>
-      this.router
-        .navigateByUrl('/') //this.historyService.getLastNonLoginUrl()
-        .catch((message) => (this.formError = message))
-    );
+    this.authenticationService
+      .register(this.credentials)
+      .then(() =>
+        this.router
+          .navigateByUrl('/')
+          .catch((message) => (this.formError = message))
+      );
   }
 
   constructor(
     private router: Router,
-    private authenticationService: AuthenticationService //private historyService: HistoryService
+    private authenticationService: AuthenticationService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.authenticationService.isLoggedIn()) {
+      this.router.navigateByUrl('');
+    }
+  }
 }

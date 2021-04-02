@@ -1,0 +1,25 @@
+/* .login {
+  padding-top: 20px;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(73, 74, 78, 0.5),
+      rgba(73, 74, 78, 0.5)
+    ),
+    url(https://source.unsplash.com/sil2Hx4iupI);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: #fff;
+} */
+
+a {
+  color: #9edb51;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

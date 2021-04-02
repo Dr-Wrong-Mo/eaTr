@@ -25,7 +25,7 @@ export class FullRecipeComponent implements OnInit {
     this.recipe = new Recipe();
   }
 
-  public chefId = this.authenticationService.getCurrentUser()._id;
+  public chefId = '';
 
   private getRecipeById(recipeId: string, id: string): void {
     this.message = 'Searching for your recipe';
@@ -46,7 +46,12 @@ export class FullRecipeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('recipeId');
-    this.getRecipeById(id, this.chefId);
+    if (!this.authenticationService.isLoggedIn()) {
+      this.router.navigateByUrl('/login');
+    } else {
+      this.chefId = this.authenticationService.getCurrentUser()._id;
+      const id = this.route.snapshot.paramMap.get('recipeId');
+      this.getRecipeById(id, this.chefId);
+    }
   }
 }

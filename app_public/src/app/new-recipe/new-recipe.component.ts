@@ -16,9 +16,15 @@ export class NewRecipeComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (!this.authenticationService.isLoggedIn()) {
+      this.router.navigateByUrl('/login');
+    } else {
+      this.chefId = this.authenticationService.getCurrentUser()._id;
+    }
+  }
 
-  public chefId = this.authenticationService.getCurrentUser()._id;
+  public chefId = '';
 
   @Input() chef: Chef;
 

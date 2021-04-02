@@ -1,76 +1,84 @@
-<div class="shoppingListc">
-  <div class="shoppingList">
-    <h3>Shopping List</h3>
-    <br />
-    <div class="form-group row">
-      <div class="col-sm-10 row">
-        <div class="col-8">New Item</div>
-      </div>
-      <br />
-      <div class="col-12">
-        <form (ngSubmit)="onItemSubmit()">
-          <div *ngIf="formError" class="alert alert-danger" role="alert">
-            {{ formError }}
-          </div>
-          <div class="col-sm-8 row">
-            <input
-              id="listItem"
-              name="listItem"
-              required="required"
-              placeholder="Add list item and quantity"
-              class="col-8 form-control"
-              onclick="this.value='';this.style.color='black';"
-              [(ngModel)]="newItem.listItem"
-            />
-            <br />
-            <button
-              type="submit"
-              class="btn btn-primary float-right"
-              style="margin-left: 15px"
-            >
-              Add Item
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-    <div
-      class="col-sm-12 col-md-3"
-      *ngFor="
-        let item of items | sortChecklist: 'listItemComplete';
-        let i = index
-      "
-    >
-      <span *ngIf="item.listItemComplete == true">
-        <input
-          type="checkbox"
-          checked="true"
-          id="listItemComplete"
-          name="listItemComplete"
-          (click)="updateItem(i)"
-        />&nbsp;
-        <label class="strikethrough" for="listItemComplete">{{
-          item.listItem
-        }}</label></span
-      >
-      <span *ngIf="item.listItemComplete == false">
-        <input
-          type="checkbox"
-          id="listItemComplete"
-          name="listItemComplete"
-          (click)="updateItem(i)"
-        />&nbsp;
-        <label class="strikethrough" for="listItemComplete">{{
-          item.listItem
-        }}</label></span
-      >
-      <span class="iconRight">
-        <button
-          class="iconRight fas fa-times"
-          (click)="itemDeleteById(i)"
-        ></button>
-      </span>
-      <br />
-    </div>
+<div class="shoppingList">
+  <h3 class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 noPadding">
+    Shopping List
+  </h3>
+  <br />
+  <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 noPadding">
+    <form (ngSubmit)="onItemSubmit()">
+      <table class="table table-striped table-hover">
+        <thead>
+          <td></td>
+          <td>Items</td>
+          <td>Action</td>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td>
+              <input
+                class="addListItem"
+                name="listItem"
+                required="required"
+                autocomplete="off"
+                placeholder="Add new items"
+                onclick="this.value='';this.style.color='black';"
+                [(ngModel)]="newItem.listItem"
+              />
+            </td>
+            <td>
+              <button type="submit" class="addListItemBtn iconRight">
+                <sl-icon name="plus-circle" class="shoelaceIcons"></sl-icon>
+              </button>
+            </td>
+          </tr>
+          <tr
+            *ngFor="
+              let item of items | sortChecklist: 'listItemComplete';
+              let i = index
+            "
+          >
+            <!-- Unchecked row -->
+            <td class="align-top" *ngIf="item.listItemComplete == false">
+              <input
+                class="form-check-input col-1"
+                type="checkbox"
+                id="listItemComplete"
+                name="listItemComplete"
+                (click)="updateItem(i)"
+              />
+            </td>
+            <td *ngIf="item.listItemComplete == false">{{ item.listItem }}</td>
+            <td *ngIf="item.listItemComplete == false">
+              <button class="iconRight listItem" (click)="itemDeleteById(i)">
+                <sl-icon name="x-circle" class="shoelaceIcons"></sl-icon>
+              </button>
+            </td>
+
+            <!-- Checked row -->
+            <td *ngIf="item.listItemComplete == true">
+              <input
+                class="form-check-input col-1"
+                type="checkbox"
+                checked="true"
+                id="listItemComplete"
+                name="listItemComplete"
+                (click)="updateItem(i)"
+              />
+            </td>
+            <td *ngIf="item.listItemComplete == true" class="strikethrough">
+              {{ item.listItem }}
+            </td>
+            <td *ngIf="item.listItemComplete == true">
+              <button
+                class="iconRight listItem text-center"
+                (click)="itemDeleteById(i)"
+              >
+                <sl-icon name="x-circle" class="shoelaceIcons"></sl-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
   </div>
 </div>

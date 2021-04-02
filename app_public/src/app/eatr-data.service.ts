@@ -35,6 +35,7 @@ export class EatrDataService {
 
   private makeAuthApiCall(urlPath: string, chef: Chef): Promise<Authresponse> {
     const url: string = `${this.apiBaseUrl}/${urlPath}`;
+
     return this.http
       .post(url, chef)
       .toPromise()

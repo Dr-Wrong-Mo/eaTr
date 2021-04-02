@@ -28,11 +28,7 @@ export class MenuBodyComponent implements OnInit {
 
   public message: string;
 
-  public chefId(): void {
-    if (this.authenticationService.isLoggedIn()) {
-      this.authenticationService.getCurrentUser()._id;
-    }
-  }
+  public chefId = '';
 
   public getRecipes(): void {
     const { _id } = this.authenticationService.getCurrentUser();
@@ -44,6 +40,7 @@ export class MenuBodyComponent implements OnInit {
   }
 
   public addIngredientToShoppingList(recipeId: string): void {
+    this.chefId = this.authenticationService.getCurrentUser()._id;
     let recipe: Recipe;
     this.eatrDataService
       .getRecipeById(recipeId, this.chefId)
@@ -63,6 +60,7 @@ export class MenuBodyComponent implements OnInit {
     if (!this.authenticationService.isLoggedIn()) {
       this.router.navigateByUrl('/login');
     } else {
+      this.chefId = this.authenticationService.getCurrentUser()._id;
       this.getRecipes();
     }
   }
