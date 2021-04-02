@@ -5,3 +5,12 @@
 :hover.shoelaceIcons {
   color: #a7e3f2;
 }
+
+.menuBodySpan {
+  margin: 0;
+  padding: 20px;
+}
+
+.noMargin {
+  margin: -20px;
+}

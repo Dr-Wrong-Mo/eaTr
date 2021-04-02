@@ -70,7 +70,7 @@ a.brand {
 /*MAIN BODY*/
 
 .router {
-  padding-top: 20px;
+  padding: 20px;
 }
 /* .menuBodyModule {
   padding: 0px;
@@ -160,10 +160,6 @@ a.brand {
   border-radius: 0px 0px 7px 0px;
 }
 
-/* .menuBody {
-  padding-left: 30px;
-} */
-
 /* ABOUT PAGE */
 
 .aboutPage {
@@ -248,10 +244,6 @@ li {
 }
 
 /* EDIT RECIPE */
-
-/* .editRecipe {
-  padding: 15px;
-} */
 
 /* SIDEBAR */
 
