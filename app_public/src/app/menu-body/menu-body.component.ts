@@ -52,7 +52,13 @@ export class MenuBodyComponent implements OnInit {
           listItem: recipe.ingredients,
           listItemComplete: false,
         };
-        this.eatrDataService.addItemByChefId(`${this.chefId}`, newItem);
+        let listItemArray = newItem.listItem.split(',');
+
+        listItemArray.forEach((arrayItem) => {
+          newItem.listItem = arrayItem;
+          console.log('arrayItem', newItem);
+          this.eatrDataService.addItemByChefId(`${this.chefId}`, newItem);
+        });
       });
   }
 
